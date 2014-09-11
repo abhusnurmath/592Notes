@@ -1,0 +1,231 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+%\documentstyle[12pt,amsfonts]{article}
+%\documentstyle{article}
+
+\setlength{\topmargin}{-.5in}
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\textwidth}{6.5truein}
+\setlength{\textheight}{8.5truein}
+%
+%\input ../adgeomcs/lamacb.tex
+\input ../mac.tex
+\input ../mathmac.tex
+%
+\input xy
+\xyoption{all}
+\def\fseq#1#2{(#1_{#2})_{#2\geq 1}}
+\def\fsseq#1#2#3{(#1_{#3(#2)})_{#2\geq 1}}
+\def\qleq{\sqsubseteq}
+%cis51109hw1
+
+%
+\begin{document}
+\begin{center}
+\fbox{{\Large\bf Permutations and Combinations}}\\
+\vspace{1cm}
+\end{center}
+
+
+\medskip\noindent
+
+{\bf Notes.}
+
+Main concepts
+
+\begin{itemize}
+\item Order matters - permutation
+\item Choosing - combinations
+\item More applications
+\end{itemize}
+\vspace{0.5cm}\noindent
+
+\section*{Permutations}
+Permutations occur when counting sequences without repetitions. 
+
+If Alice, Bob and Carol have to be lined up in a straight line the number of ways in which this can be done can be calculated using the product rule. 
+
+The first position can be filled any of the 3. The second position can be filled by any of the remaining 2. Finally there is only choice for the final position. Therefore this can be done in $3 \cdot 2 \cdot 1 = 6$
+
+In general, $n$ items can be arranged in an $n$ sequence in $n! = n \times (n-1) \times (n-2) \times 1$ ways.
+
+That $n$ with an exclamation point is the notation for what is called n factorial.
+
+What if instead of using all the elements in a set, we just want to pick $r$ of them and arrange them in a straight line?
+
+The product principle can still be applied
+
+\begin{itemize}
+\item pick the first - $n$ choices
+\item pick the second - $n-1$ choices
+\item pick the third - $n-2$ choices
+\item pick the $r^{th}$ - $n-r+1$ choices
+\end{itemize}
+
+Putting that all together you get what is called the number of r-permutations over a set with n elements which is often denoted as $P(n,r)$. An r-permutation is a sequence of r items with no repetitions, all taken from the same set.
+
+$P(n,r) = n \cdot (n-1) \cdots (n-r+1) = \frac{n!}{(n-r)!}$
+
+\section*{Examples -  Permutations}
+
+How many functions are there from $\{1,2,3\}$ to $\{a,b\}$?
+
+The key here is recognizing that each function can be identified as an ordered sequence of 3 with each place being occupied by an $a$ or a $b$. Why? Something (a,a,b) would just mean that $1$ is being mapped to $a$, $2$ is being mapped to $b$ and so on. 
+So the total is $2 \times 2 \times 2 = 8$. 
+
+It is important to observe that in this case, since repetition is allowed in the sequence, you actually do not use the r-permutation formula. 
+
+\medskip
+
+\textbf{Example} There are 8 people who make it to the 100 m final at the Olympics. In how many ways can the gold, silver and bronze be handed out?
+
+This is the same as the number of 3-permutations in a set of 8 since we have to assume that any of the 8 people can win a medal. Also, the obvious constraint here is that a person who manages to win the gold medal cannot also at the same time manage to win silver or bronze. 
+
+So $8 \cdot 7 \cdot 6$  ways.
+
+\medskip
+
+\textbf{Example} A wedding party consists of 3 groomsmen, 3 bridesmaids and of course the bride and groom. The photographer wants to take pictures by arranging people on a bench. The bridesmaids have to be together, the groomsmen have to be together and the newly married couple would be together as well. How many different photographs are possible.
+
+There are basically 3 distinct groups here. Consider the groomsmen as one unit (tie them up!), bridesmaids as one unit and the couple as one unit. These 3 units can be arranged in 3! ways. Now within the groups, you can arrange the bridesmaids in 3! ways. The groomsmen in 3! ways and finally the couple can be arranged in 2 ways.
+Therefore, $3!3!3!2! = 432$ pictures. 
+
+\medskip
+
+\textbf{Example}
+
+This one is taken from the recitation questions since we did not get to it in recitation
+
+In how many ways can the letters of the word `LEADING' be arranged so that the vowels are always together.
+
+In a manner similar to the example above, we tie the vowels together. That means we have the characters L, D, N, G and then the block of A,E,I. So 5 different things to be arranged first. 
+That can be done in 5! ways. 
+
+But that is not all. We can `zoom' in to the block of vowels and then rearrange those. 3 of those. They can be arranged in 3! ways.
+
+So overall, you have 5!3! ways or arranging these letters as per the constraints.
+
+\section*{Combinations - Choice without order mattering}
+
+Assume someone tells you that Christopher Nolan is a great director. You want to watch some of his movies but you really do not have the time to watch them all. You just want to watch 3 of them before you make your decision whether he is good or not. The question is in how many ways can you make your choice.
+
+Here are his movies - {Following, Memento, Insomnia, Batman Begins, The Prestige, The Dark Knight, Inception, The Dark Knight Rises}. 8 movies in total.
+
+Now let's first look at this as a sequencing/permutation question and say we have 3 blanks to fill 
+
+\underline{{\hspace{2cm}}} \hspace{0.5cm } \underline{{\hspace{2cm}}} \hspace{0.5cm} \underline{{\hspace{2cm}}} 
+
+\vspace{1cm}
+
+The first blank can be filled in 8 ways, the second in 7 ways, the third in 6 ways (you're not going to repeat a movie). So your initial idea might be to say $8 \cdot 7 \cdot 6$.
+
+But the order does not matter! You are just making a choice of 3 movies to watch. It does not matter if you watch Memento, Insomnia, Dark Knight in that order or Insomnia, Dark Knight, Memento in that order. If someone was to ask you which 3 movies you watched, in both cases, you would just say `I watched Insomnia, Memento and Dark Knight'.
+
+So this means we are over counting in our above answer. How much are we over counting by??
+
+For each choice of 3 movies, there are 3! ways in which you can order them. 
+
+For the choice mentioned above for instance, you could arrange them as
+
+(Memento, Insomnia, Dark Knight) or (Memento, Dark Knight, Insomnia) or (Dark Knight, Insomnia, Memento) or (Dark Knight, Memento, Insomnia) or (Insomia, Dark Knight, Memento) or 
+(Insomnia, Memento, Dark Knight). 
+
+That is 6 ways.
+
+So for each choice, we have 6 ways to do the arrangments. That means that
+
+\begin{align*}
+\text{Number of choices} \times 6 &= 8 \cdot 7 \cdot 6 \\
+\text{Number of choices} &= \frac{8 \cdot 7 \cdot 6 }{6}
+\end{align*}
+
+This is basically what is called a combination problem or a problem that involves counting the number of choices.
+
+There is a formula and terminology associated with this. We write ${n \choose r}$ and say `n choose r' and this denotes the number of ways in which you can choose a set of r items from a set of n items.
+
+\begin{align*}
+{n \choose r} = \frac{n!}{r!(n-r)!}
+\end{align*}
+
+Now that you have seen this notation and formula, you can answer the previous question even more directly by saying
+
+The number of choices is the same as picking a set of 3 from a set of 6. That is $\binom{6}{3}$.
+
+\section*{The k to 1 rule}
+Let $f: X \rightarrow Y$ be a function with the property that for every $y \in Y$, there are exactly $k$ different $x \in X$ such that $f(x) = y$
+
+Then to count the number of elements in $X$, you can simply say $|X| = \frac{|Y|}{k}$.
+
+\medskip
+\textbf{Example} - How many binary strings of length 16 have exactly 4 1s.
+
+Think of this question in the following manner. Once you know which of the 16 spots contain the 1s, you are done!
+
+In how many ways can 4 spots be picked for the 1s. Out of the 16 possible spots, you have to pick 4.
+
+That is $\binom{16}{4}$.
+
+Here is another way of looking at it. Let us define a mapping from the set of 16 bit strings to a subset of the set $\{1,2,\ldots 16\}$ of size 4 in the following manner. Map the string to the locations where a 1 can be found.
+
+$0110100010000000$ gets mapped to $\{2,3,5,9\}$.
+
+$0000 0110 0101 0000$ gets mapped $\{6,7,9,11\}$.
+
+It is clear that given a string you can uniquely map it to a 4 element set.
+
+It is also clear that given a 4 element subset, you can form a 16 bit string. Just put the 1s in the locations provided by the 4 element subset.
+
+So this is a bijection between 16 bit strings and 4 element subsets. Therefore the number of 16 bit strings with 4 1s is the same as the number of 4 element subsets of the set $\{1,2,\ldots 16\}$.
+
+How many 4 element subsets are there? Again, that is $\binom{16}{4}$.
+
+\section*{Applications}
+\begin{itemize}
+\item IP Addresses
+
+\emph{See the Discrete Mathematics with Applications book for complete details. The relevant portion of the book is on Canvas. This little section is pretty much a verbatim copy of that example}
+
+In order to communicate effectively, each computer in a network needs a distinguishing name called an address. For the Internet this address is currently a 32-bit number called the Internet Protocol (IP) address (although 128-bit addresses are being phased in to accommodate the growth of the Internet). For technical reasons some computers have more than one address, whereas other sets of computers, which use the Internet only sporadically, may share a pool of addresses that are assigned on a temporary basis. Like telephone numbers, IP addresses are divided into parts: one, the network ID, speciﬁes the local network to which a given computer belongs, and the other, the host ID, speciﬁes the particular computer.
+
+An example of an IP address is 10001100 11000000 00100000 10001000, where the 32 bits have been divided into four groups of 8 for easier reading. To make the reading even easier, IP addresses are normally written as `dotted decimals,' in which each group of 8 bits is converted into a decimal number between 0 and 255. For instance, the IP address above converts into 140.192.32.136
+
+In order to accommodate the various sizes of the local networks connected through the Internet, the network IDs are divided into several classes, the most important of which are called A, B, and C. In every class, a host ID may not consist of either all 0’s or all 1’s.
+
+Class B network IDs are used for medium to large local networks. The two left-most bits are set to 10, and the left-most 16 bits give the full network ID. The remaining 16 bits are used for individual host IDs.
+
+\begin{enumerate}
+\item How many class B networks are there?
+
+The network ID is the left most 16 bits. But the first two bits have to be a 1 followed by 0. This means we only have freedom in the remaining 14 bits. Each of those bits has 2 choices a 1 or a 0. So $2^{14}$.
+
+\item How many hostIDs can there be on any class B network?
+
+Now we are given a network ID and we are basically assigning IDs to the individual computers. We have 16 bits to play with. So that would just be $2^{16} = 65536$. But there is a rule which says that the host IDs cannot be all 0s or all 1s. So that just means we need to subtract 2 from this.
+Hence 65534 computers can be connected on any given class B network.
+
+\item What is the dotted decimal form of a computer on a class B network?
+
+The network ID part goes from 10000000 00000000 to 10111111 11111111. 
+
+That means from 128.0 to 191.255
+
+So the dotted decimal form of computers on a class B network would be of the form $w.x.y.z$
+where w ranges from 128 to 191 and the others range from 0 to 255.
+The only caveat is that both y and z cannot be 0. Also both y and z cannot be 255.
+This is because you cannot have an all 0 hostID and cannot have an all 1 hostID.
+
+\end{enumerate}
+
+
+
+\end{itemize}
+
+\end{document}
+
+
+
