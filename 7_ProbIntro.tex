@@ -114,7 +114,7 @@ p(E) = \frac{|E|}{|S|}
 
 \pagebreak
 
-Example (from zybook)
+Example (from zybook - 11.1.1)
 
 Consider a situation in which files are stored on a distributed network. Multiple copies of each files are stored around the network so that if one or more computers crash, the data is more likely to be available from at least one source. Suppose that three copies of a files are stored at different locations in a network of 30 computers and that at a particular moment, five random computers fail. Each subset of 5 computers are equally likely to be the five that have failed. What is the probability that there are no copies left of the file?
 
@@ -123,6 +123,65 @@ The experiment over here is choosing 5 computers that fail. So total number of d
 How many of these subsets have all 3 of the computers that contain this file? The file is in 3 of the computers, so we have to have all 3 of these computers being picked. But we still have a choice for the remaining 2 computers. 27 other computers exist. 2 of them have to be picked.
 
 therefore $\frac{{27 \choose 2}}{{30 \choose 5}}$
+
+\section*{Birthdays! - Complementary probability}
+
+One of the cool applications of Probability is in the computation of how many people you need to have in a group before at least 2 of them have the same birthday.
+
+Let's keep things simple and say that the year has 365 days (which works for most applications). 
+
+Now obviously, if you have 366 people, the probability that at least 2 of them share the same birthday is 1. That sort of argument is what is generally referred to as the Pigeon hole principle (something that we do not cover much in this course).
+
+Let's say you have m people. Now the number of ways in which those m people get birthdays assigned to them is - the first person has 365 choices, so does the second, so does the third and so on. So if we wrote out the sample space it would look like
+
+$\{(b_1, b_2, \ldots, b_m)| 1 \le b_i \le 365 \}$.
+
+We know how to count that. Product rule or the idea of Cartesian products. So the cardinality of this set is $365^m$.
+
+How do we count the number of cases where at least 2 of these m people have the same birthday?
+One way of doing it would be to say let's count the cases for exactly 2 having the same birthday then the cases for exactly 3 having the same birthday, and so on. But if $m$ is large, this is just going to be a huge pain!
+
+Instead, we just look at what is called the complementary event and use this important idea
+
+$P(A^c) = 1 - P(A)$ 
+
+because after all, every outcome is either part of the event you want or not. And the probabilities have to total to 1.
+
+So what is the complementary event in this case. The event that NONE of the $m$ people share a birthday. In how many ways can we have these $m$ people not share birthdays at all.
+
+Think of it again as a sequencing/arrangement problem. Person 1 has 365 available to him/her as potential birthdays. Person 2 is not allowed to have a birthday on the same day, so that means 364 possible days. And now you get the idea...
+
+That means the probability of the complement event = 
+
+\begin{align*}
+\frac{365 \times 364 \times \cdots (365-m+1)}{365^m}
+\end{align*}
+
+Therefore the probability of the event itself is
+
+\begin{align*}
+1 - \frac{365 \times 364 \times \cdots (365-m+1)}{365^m}
+\end{align*}
+
+This initially might seem like an uninteresting geeky expression until you start plugging numbers in. Here is a plot of number of people versus the probability of this event.
+
+\includegraphics[scale=0.6]{birthday.png}
+
+We have 42 in this class. There is a pretty good chance there is at least one pair that shares birthdays.
+
+\section*{Application - Hashing and hashmaps}
+
+Assume we have $n$ values and they are being hashed to 20 locations. Assume also that we do not have a hash function in mind yet, but just pick one completely at random. What is the probability that our hash function has no collisions!
+
+If you think about this, it is actually the same thing as people and birthdays. Except the year now has 20 days instead of 365!!
+
+So the probability that a randomly chosen hash function has no collisions is
+
+\begin{align*}
+\frac{P(20, n)}{20^n} = \frac{20 \cdot 19 \cdot 18 \cdots (20 - n + 1)} {20^n}
+\end{align*}
+
+Similar to the birthday problem it might be somewhat surprising to realize that the probability of some collision is actually fairly high.
 
 
 \end{document}
