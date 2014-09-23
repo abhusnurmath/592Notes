@@ -15,8 +15,8 @@
 \setlength{\textheight}{8.5truein}
 %
 %\input ../adgeomcs/lamacb.tex
-\input ../mac.tex
-\input ../mathmac.tex
+%\input ../mac.tex
+%\input ../mathmac.tex
 %
 \input xy
 \xyoption{all}
@@ -162,7 +162,16 @@ $P(R \cap K^c) = P(R|K^c)P(K^c) = 0.5 * 0.2 = 0.1$
 
 Adding those you get a probability of 86\% to get a question right.
 
-\section*{Bayes Theorem}
+\section*{Independence}
+
+The following conditions are independent and correspond to the criteria for declaring 2 events to be independent.
+
+\begin{align*}
+P(E|F) &= P(E) \\
+P(E \cap F) &= P(E)P(F) \\
+P(F|E) &= P(F)
+\end{align*}
+
 
 
 \end{document}
