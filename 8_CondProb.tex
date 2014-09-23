@@ -1,0 +1,171 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+%\documentstyle[12pt,amsfonts]{article}
+%\documentstyle{article}
+
+\setlength{\topmargin}{-.5in}
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\textwidth}{6.5truein}
+\setlength{\textheight}{8.5truein}
+%
+%\input ../adgeomcs/lamacb.tex
+\input ../mac.tex
+\input ../mathmac.tex
+%
+\input xy
+\xyoption{all}
+\def\fseq#1#2{(#1_{#2})_{#2\geq 1}}
+\def\fsseq#1#2#3{(#1_{#3(#2)})_{#2\geq 1}}
+\def\qleq{\sqsubseteq}
+\newtheorem{theorem}{Theorem}
+%cis51109hw1
+
+%
+\begin{document}
+\begin{center}
+\fbox{{\Large\bf Probability of Unions and Conditional Prob}}\\
+\vspace{1cm}
+\end{center}
+
+\vspace{0.5cm}\noindent
+
+\section*{Probability of unions}
+Two events are mutually exclusive if they are disjoint (which is another way of saying that their intersection is empty).
+
+Having done set theory we know how to count the elements of a set if the two are mutually disjoint. 
+Just applying that idea
+
+$P(A \cup B) = P(A) + P(B)$.
+
+\medskip
+
+\textbf{Example}
+
+Consider the situation in which files are stored on a distributed network that has 30 computers. Three copies of File 1 are stored at three distinct locations in the network, and three copies of File 2 are stored at three different locations in the network (locations for File 1 are different from locations for File 2). Suppose that there are 6 random computers that have failed. What is the probability that either file has been wiped out? Let $F_1$ be the event that all three copies of File 1 are gone and $F_2$ the event that all three copies of File 2 are gone. What is $P(F_1 \cup F_2)$?
+
+First let us compute $P(F_1)$. Our sample space consists of all the possible ways in which 6 out of 30 computers can fail. That is the same as choosing 6 from 30 or $30 \choose 6$. For the event described, we need all 3 computers that hold $F_1$ to be wiped out but the remaining 3 failed computer could be any of the rest. So that is $27 \choose 3$ ways.
+
+$P(F_1) = \frac{{27 \choose 3}}{{30 \choose 6}}$
+
+$F_2$ in terms of the probability calculation is exactly the same. So $P(F_2) = P(F_1)$.
+
+But is there a chance that both $F_1$ and $F_2$ happen? Indeed. If the 6 computers that fail are the $F_1$ and $F_2$ computers. Which can only happen in this 1 disastrous way.
+
+Therefore,
+
+\begin{align*}
+P(F_1 \cup F_2) = \frac{2 \cdot \binom{27}{3}}{\binom{30}{6}} - \frac{1}{\binom{30}{6}}
+\end{align*}
+
+\section*{Generalization - Inclusion/Exclusion principle}
+
+The general idea when dealing with probability of unions (or for that matter the cardinality of a union of sets) is to apply the following general formula
+
+$\displaystyle P(\bigcup_{i=1}^n A_i) = \sum_{i=1}^n P(A_i) - \text{sum of the pairwise union } + \text {sum of triple unions} ...$
+
+\textbf{Example}
+
+What is the probability that the random hashing actually manages to use all the buckets? 
+
+This is related to the famous Derangement problem - There are 5 people who show up at a restaurant and check their coats in. The host messes up the coat check procedure and now has no idea which coa belongs to which patron. He just returns them at random.
+
+What is the probability that no one gets their own coat?
+
+This is an interesting case where computing the probability that at least one gets their own coat is actually easier! This is thanks to the inclusion-exclusion formula. 
+
+Let $E_i$ be the event that the $i$th person gets their own coat. 
+
+What is the probability that person 1 gets their own coat? $P(E_i)$. The others can get any of the coats. So 4 x 3 x 2 x 1. But in general we have 5! possibilities. 
+
+
+What is the probability that 2 of them get their coats. Again that means that 3 of them can get any coat. So 3! for them. What does this correspond to in terms of our notation
+
+$P(E_i \cap E_j) = \frac{3!}{5!}$
+
+But how many pairs are there? $5 \choose 2$
+
+Generalize to get this
+
+\begin{align*}
+P(E_1 \cup E_2 \ldots E_5) &= \sum_{k=1}^5 (-1)^{k+1}{5 \choose k} \frac{(5-k)!}{5!} \\
+ &= \sum_{k=1}^5 (-1)^{k+1} \frac{5!}{k!(5-k)!}  \frac{(5-k)!}{5!}
+ &= \sum_{k=1}^5 \frac{(-1)^{k+1} }{k!}
+ &= 1 - \frac{1}{2!} + \frac{1}{3!} -\frac{1}{4!} + \frac{1}{5!}
+\end{align*}
+
+Probability that nobody gets their hat is therefore the complement event. Subtract this quantity from 1 to get
+
+$\frac{1}{2!} - \frac{1}{3!} + \frac{1}{4!} - \frac{1}{5!}$
+
+\medskip
+
+How does this translate into the world of hash functions?
+
+How many functions from an n-element set to an m-element set? $m^n$.
+
+How many functions do not map anything to the 1st element? $(m-1)^n$. The 1st element is not allowed but any of the remaining (m-1) would be allowed. 
+
+How many functions do not map anything to 1st element or the 2nd element? $(m-2)^n$. 
+
+How many pairs are there? ${m \choose 2}$
+
+Extending this logic - the number of functions where at least one element of the m-element set are left unmapped  are 
+
+\begin{align*}
+\sum_{k=1}^m (-1)^{k+1} {m \choose k} (m-k)^n
+\end{align*}
+
+So the number of onto functions are the total functions are 
+
+\begin{align*}
+m^n - \sum_{k=1}^m (-1)^{k+1} {m \choose k} (m-k)^n
+\end{align*}
+
+\section*{Conditional Probability}
+Often times, given the occurrence of an event, the probability of another event changes. The general formula for conditional probability is
+
+\begin{align*}
+P(E|F) = \frac{P(E \cap F)}{F}
+\end{align*}
+
+Example - rolling a red die and a blue die. What is the probability that the two numbers on the dice sum to at least 11 given the information that the blue die has the value 5.
+
+$P(E \cap F) = \frac{1}{36}$ ; the only way this happens is if the red die has the value 6.
+
+$P(F) = \frac{6}{36}$ ; when the blue die is 6, the red die could be anything.
+
+Therefore the conditional probability is $P(E|F) = 1/6$.
+
+\subsection*{Using conditional probability to reason about an event}
+
+A student knows 80\% of the material on a true-false exam. If the student knows the material, she has a 95\% chance of getting it right. If the student does not know the material she just guesses and as expected has just a 50\% chance of getting it right.
+
+What is the probability of getting the question right?
+
+In this type of problem we can basically define the following events
+
+R - the event of getting the question right
+
+K - the event of knowing the question
+
+$P(R) = P(R \cap K) + P(R \cap K^c)$
+
+$P(R \cap K) = P(R|K)P(K) = 0.95 * 0.8 = 0.76$
+
+$P(R \cap K^c) = P(R|K^c)P(K^c) = 0.5 * 0.2 = 0.1$
+
+Adding those you get a probability of 86\% to get a question right.
+
+\section*{Bayes Theorem}
+
+
+\end{document}
+
+
+
