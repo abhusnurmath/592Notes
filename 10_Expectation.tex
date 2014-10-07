@@ -185,11 +185,14 @@ So let's say we have a random array arr, with elements arr[0] through arr[n].
 
 Let us define indicator variables $X_i$ to correspond to the event that arr[i] becomes the minimum. 
 
-What is $E(X_i) = P(arr[i])$ becomes the minimum while iterating through this loop)
+What is $E(X_i) = P(arr[i]$ becomes the minimum while iterating through this loop)
+
 That is the same as P(arr[i] is the minimum in the set 
-$\{arr[0], arr[1], arr[2],...arr[i-1]\}$
+$\{arr[0], arr[1], arr[2],...arr[i-1]\})$
  
-What is the probability of that? One way of thinking of it is that there is a $\frac{1}{i}$ chance that when you randomly take $i$ elements, the lowest one is at the end. 
+What is the probability of that? 
+
+One way of thinking of it is that there is a $\frac{1}{i}$ chance that when you randomly take $i$ elements, the lowest one is at the end. 
 
 What is the expected number of updates. Since we want to use linearity of expectation, if we 
 just say let $\displaystyle X = \sum_{i=0}^{n-1}X_i$ then clearly the value of $X$ represents the number of times the variables minimum gets updated.
@@ -199,7 +202,7 @@ So
 E[X] = \sum_{i=0}^{n-1} \frac{1}{i+1} 
 \end{align*} 
 
-Unfortunately there is no closed form expression for this (a formula). But there is an approximation which comes from the theory of Harmonic numbers that basically approximates this to be close to the natural logarithm $ln(n)$.
+Unfortunately there is no closed form expression for this (a formula). But there is an approximation which comes from the theory of Harmonic numbers that basically approximates this to be close to the natural logarithm $ln(n)$. Intuition might suggest that you actually have a linearly increasing number of updates that take place as the size of your array goes up. Applying the theory of expectation, we see that actually the increase is a lot slower.
 
 \section*{Conclusion}
 Expectations is a topic that really deserves more than 1 lecture and we will probably come back to this again towards the end. But, to supplement your understanding of the material, we will cover questions/examples in recitation and in the HW. In particular, please refrain from using the internet in any shape or form for this HW. If you feel really stuck, I'd prefer you collaborate with someone from class and get to the solution. 
