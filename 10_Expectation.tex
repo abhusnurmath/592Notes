@@ -64,7 +64,7 @@ where p(s) is the probability of an outcome.
 
 A lottery is run in which every ticket has six numbers. Each of the six numbers is in the range from 1 through 50. The person purchasing a lottery ticket can select the numbers on their ticket. On each Friday of the week, the state lottery commission holds a drawing in which six random numbers are generated. Each number in the range from 1 through 50 is equally likely. In order to win the jackpot, the ticket must match each number selected in order. If a person has a winning ticket, they win \$100,000,000. What is the expected winning from a single ticket?
 
-If we think of the random variable $X$ as representative of the winnings from a lottery drawing, then $X$ takes on only two values. 0, which happens most of the time, corresponding to not winning the lottery and then \$100,000,000 which corresponds to winning the lottery. To compute the expected value we need to find the probabilities associated with the event of winning a losing.
+If we think of the random variable $X$ as representative of the winnings from a lottery drawing, then $X$ takes on only two values. 0, which happens most of the time, corresponding to not winning the lottery and then \$100,000,000 which corresponds to winning the lottery. To compute the expected value we need to find the probabilities associated with the event of winning and the event of losing.
 
 \begin{align*}
 E[X] = (100,000,000) \cdot P(winning) + 0 \cdot (1 - P(winning))
@@ -88,9 +88,9 @@ So the expected winnings in this lottery for a single ticket is 0.64 cents.
 A roulette wheel has 38 slots. These slots consist of the number 1 through 36. Half of them are read and half of them are black. You also have 0 and 00.  
 
 Let us say you bet \$1 on Black. If a black number comes up, you receive
-your dollar back plus \$1; otherwise you lose your dollar. Let X be your net winnings in one game. Then X can take on the values +1 and −1. What are your expected winnings.
+your dollar back plus \$1; otherwise you lose your dollar. Let X be your net winnings in one game. Then X can take on the values +1 and -1. What are your expected winnings.
 
-$P[X = 1] = 18/38$ and  $P[X = −1] = 20/38$ . 
+$P[X = 1] = 18/38$ and  $P[X = (-1)] = 20/38$ . 
 
 Thus
 
@@ -203,6 +203,22 @@ E[X] = \sum_{i=0}^{n-1} \frac{1}{i+1}
 \end{align*} 
 
 Unfortunately there is no closed form expression for this (a formula). But there is an approximation which comes from the theory of Harmonic numbers that basically approximates this to be close to the natural logarithm $ln(n)$. Intuition might suggest that you actually have a linearly increasing number of updates that take place as the size of your array goes up. Applying the theory of expectation, we see that actually the increase is a lot slower.
+
+\section*{Bernoulli Trial}
+An experiment which has a single outcome of success or of failure. Generally, the probability of success is represented with $p$. 
+
+A coin-flip is the most traditional variant of a Bernoulli trial.
+
+The generalized version of computing the probability of a certain number of heads in $n$ coin flips is this theorem.
+
+\begin{theorem}
+The probability of exactly $k$ successes in a sequence of n independent Bernoulli trials, with probability of success $p$ and probability of failure $q = 1-p$ is
+
+\begin{align*}
+\binom{n}{k}q^kp^{n-k}
+\end{align*}
+
+\end{theorem}
 
 \section*{Conclusion}
 Expectations is a topic that really deserves more than 1 lecture and we will probably come back to this again towards the end. But, to supplement your understanding of the material, we will cover questions/examples in recitation and in the HW. In particular, please refrain from using the internet in any shape or form for this HW. If you feel really stuck, I'd prefer you collaborate with someone from class and get to the solution. 
