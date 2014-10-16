@@ -232,6 +232,32 @@ Let us break this into a couple of steps
 \end{enumerate}
 
 
+\subsection*{Common confusion}
+
+One of the more common mistakes is to interchange the $\wedge$ and the $\rightarrow$. As an amusing illustration of this, we'll use a classic from Lewis Carroll (or C.L. Dodgson if you prefer his geeky side ).
+
+Here are a set of logical statements. Remember that right now we are only trying to express the statements as opposed to trying to prove anything.
+
+\begin{enumerate}
+\item All lions are fierce
+\item Some lions do not drink coffee
+\item Some fierce creatures do not drink coffee
+\end{enumerate}
+
+Let the domain be the set of all creatures. Let us use $L(x)$ to denote $x$ is a lion. $F(x)$ for $x$ is fierce and $C(x)$ for coffee drinking.
+
+Here are the statements in logic
+
+\begin{enumerate}
+\item $\forall x (L(x) \rightarrow F(x))$
+\item $\exists x (L(x) \wedge \neg C(x))$
+\item $\exists x (F(x) \wedge \neg C(x))$
+\end{enumerate}
+
+So why can't we try writing $\exists x (L(x) \rightarrow \neg C(x))$? Consider just the $L(x) \rightarrow \neg C(x)$ part. This implication becomes try anytime the $L(x)$ is false.  What does it mean to say $L(x)$ is false? That just means we have a creature that is not a lion.
+
+Therefore, if we write the statement using an implication, the moment we find a creature that is not a lion, it becomes a true statement. More importantly it becomes a true statement even in the case when every single lion is a coffee drinker. Hence, writing it as an implication is not correct.
+
 \section*{Expressing theorems using logical symbols}
 
 We have dealt with smaller sentences being expressed using predicates. Now that we have seen universal quantifiers and existential quantifiers, we can combine all our knowledge in order to make more logical expressions out of the English statements of mathematical theorems. 
