@@ -1,0 +1,252 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+%\documentstyle[12pt,amsfonts]{article}
+%\documentstyle{article}
+
+\setlength{\topmargin}{-.5in}
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\textwidth}{6.5truein}
+\setlength{\textheight}{8.5truein}
+%
+%\input ../adgeomcs/lamacb.tex
+%\input ../mac.tex
+%\input ../mathmac.tex
+%
+\input xy
+\xyoption{all}
+\def\fseq#1#2{(#1_{#2})_{#2\geq 1}}
+\def\fsseq#1#2#3{(#1_{#3(#2)})_{#2\geq 1}}
+\def\qleq{\sqsubseteq}
+\newtheorem{theorem}{Theorem}
+%cis51109hw1
+
+%
+\begin{document}
+\begin{center}
+\fbox{{\Large\bf English with Logic}}\\
+\vspace{1cm}
+\end{center}
+
+\vspace{0.5cm}\noindent
+
+\section*{Free variables and bound variables}
+A variable x in the predicate P(x) is said to be a free variable because the variable is free to take on any value in the domain. The variable x in the statement $\forall x P(x)$ is a bound variable because the variable is bound to the universal quantifier. A statement with no free variables is a proposition because the statement's truth value can actually be determined. 
+
+While we started off with predicates of just one variable, you can easily extend the definition to predicates with any number of variables.
+
+$B(x,y): \text{x beat y in a tournament}$, where $x$ and $y$ are professional tennis players.
+
+$D(x,y): \text{x drinks y}$, where $x$ is from the set of professors and $y$ from the set of beers available at Monks.  
+
+You can combine quantifiers and then have the concept of free and bound variables show up even more.
+
+\begin{align*}
+\forall x P(x,y) \tag{x is a bound variable, but y is free} \\
+\forall x \exists y Q(x,y) \tag{x and y are both bound}
+\end{align*}
+
+\section*{Nested quantifiers}
+
+\subsection*{Same quantifiers}
+
+Let the domain be the set of students who are in MCIT first year.
+
+Define a predicate H to be:
+
+F(x,y): y and x are friends on facebook.
+
+Consider the following quantified statement
+
+\begin{align*}
+\forall x \forall y F(x,y)
+\end{align*}
+
+What is this in English? Perhaps something like 'In the MCIT program, everyone is everyone's friend on facebook.'
+
+But does this miss something? What about the case when $x$ and $y$ are the same?
+
+Generally speaking, if we do not expect everyone to be friending themselves on facebook, the mathematical statement is better expressed as
+
+\begin{align*}
+\forall x \forall y ( (x \neq y) \rightarrow F(x,y))
+\end{align*} 
+
+and the English translation now would be. "In the MCIT program, everyone has friended every other person on facebook."
+
+Let's retain the same domain. Another predicate that can be made is
+
+P(x,y): x has pair programmed with y
+
+Now the proposition 
+
+\begin{align*}
+\exists x \exists y P(x,y)
+\end{align*}
+
+is basically then saying "There is some MCIT student that has pair programmed with some MCIT student."
+
+\medskip
+
+\textbf{Example}
+
+Assume the domain is $\mathbb{Q}$
+
+What is the truth value of $\forall x \; \forall y \; (( x + y \neq x) \vee (y = 0))$
+
+\subsection*{Alternating quantifiers}
+
+Let's try and express the following in English. The predicates used are the ones defined in the previous subsection.
+
+\begin{align*}
+\forall x \exists y P(x,y)
+\end{align*}
+
+This is now saying "Every MCIT student has pair programmed with some MCIT student".
+
+Does the order of those quantifiers matter?
+
+\begin{align*}
+\exists x \forall y P(x,y)
+\end{align*}
+
+This is now saying "There is some MCIT student that has pair programmed with every MCIT student".
+
+Now let us get back to math and explore the truth value of some of these quantified statements.
+
+Assume the domain to be integers
+
+\begin{align*}
+\forall x \exists y \; x + y = 0
+\end{align*}
+
+Is this true? A fun way of reasoning about it is to treat it as a two player game. Player 1 - the universal player is focussing on the universally quantified $x$ and is trying to make the statement false. Player 2 - the existential player is focusing on the existentially quantified $y$ and is trying to make the statement true.
+
+In the above statement, regardless of what value of $x$ the universal player chooses, the existential player just sets $y$ to be $-x$ and the proposition is true. 
+
+So this is a true statement.
+
+Let us switch the order of quantifiers
+
+\begin{align*}
+\exists x \forall y \; x + y = 0
+\end{align*}
+
+In the two person game method of reasoning, the players go in the order of quantifiers. So the existential player picks an $x$ this time. The universal player happily gets to be evil and picks a $y$ that is not $-x$ and gets the statement to be false. Thus the universal player can always win and therefore the statement $\exists x \forall y \; x + y = 0$ turns out to be false.
+
+\section*{Negations with multiple quantifiers}
+
+We have negated quantified statements and noticed how the universal quantifier turns into the existential quantifier and vice-versa. That logic can be extended to statements that involve multiple quantifiers as well. Let us try to negate the boxed statement below
+
+\medskip
+
+\fbox {There is a student who has eaten at every food cart.}
+
+\medskip
+
+It is safest to turn these into our language of quantifiers and then do the negation.
+
+Let the variable $x$ come from the domain of students. Let the variable $y$ come from the domain of food carts.
+
+Define the predicate $E(x,y)$ as true when student $x$ has eaten at foodcart $y$
+
+then the boxed statement becomes
+
+\begin{align*}
+\exists x \forall y E(x,y)
+\end{align*}
+
+Now that we have this in nice quantified form, we can go ahead and do the negation
+
+\begin{align*}
+\neg \exists x \forall y \; \; E(x,y) \\
+= \forall x \exists y \; \; \neg E(x,y)
+\end{align*}
+
+Now to express this back in English
+
+Every student has some food cart that they have not eaten at.
+
+\section*{Domain expansion}
+Consider the statement
+
+All mammals have hair.
+
+Let M be the set of mammals.
+
+Let H(x) be the predicate that is true when $x$ has hair.
+
+\begin{align*}
+\forall x \in M \; (H(x))
+\end{align*}
+
+Consider how we would express this if we wanted to change the domain and make it larger. Make it larger to encompass all animals. Let us call the set of all animals $A$.
+
+\begin{align*}
+\forall x \in A \; (x \in M \rightarrow H(x))
+\end{align*}
+
+Consider the statement 
+
+Some politicians are honest.
+
+Let $P$ be the set of politicians
+
+Let $H(x)$ be the predicate that is true when $x$ is honest
+
+\begin{align*}
+\exists x \in P \; (H(x))
+\end{align*}
+
+Consider how we would express this if we wanted to change the domain to make it all working humans. 
+
+\begin{align*}
+\exists x \in W \; ((x \in P) \wedge H(x))
+\end{align*}
+
+\section*{Example of expressing uniqueness}
+
+Since mathematical theorems very often use the expression `there exists a unique', it is important to understand how to express that idea via predicates, logical connectives etc.
+
+Assuming we start with the domain of humans. 
+
+\fbox{Everyone has exactly one best friend}
+
+Let us break this into a couple of steps
+
+\begin{enumerate}
+\item $\forall x \text{(x has exactly one best friend)}$
+\item $\forall x \exists y \; \text{BFF}(x,y) \text{ and x does not have any other best friend}$. Where BFF$(x,y)$ is a predicate that is true whenever y is the best friend of x. 
+\item $\forall x \exists y \; \text{BFF} (x,y) \text{ and all other z satisfy } \neg B(x,y)$
+\item $\forall x \exists y \; \text{BFF} (x,y) \wedge \forall z \text{ If } z \neq y \text{ then } \neg B(x,y)$
+\item $\forall x \exists y (BFF (x,y) \wedge \forall z (z \neq y) \rightarrow \neg B(x,y)))$
+\end{enumerate}
+
+
+\section*{Expressing theorems using logical symbols}
+
+We have dealt with smaller sentences being expressed using predicates. Now that we have seen universal quantifiers and existential quantifiers, we can combine all our knowledge in order to make more logical expressions out of the English statements of mathematical theorems. 
+
+Here for instance is the statement of what is called the division theorem - 
+
+\paragraph{}
+For every positive integer $n$  and every non-negative integer $m$ , there are non-negative integers $q$ and $r$ with $0 \le r < n$ such that $m = qn + r$.
+
+Here is one way of expressing this using quantifiers and logical connectors,
+
+\begin{align*}
+\forall n \in \mathbb{Z^+} (\forall m \in \mathbb{N} (\exists q \in \mathbb{N} (\exists r \in \mathbb{N} ((r < n) \wedge (m = qn +r))))
+\end{align*}
+
+The parentheses are used over here just to make things clearer. It would not be wrong to use the phrase `such that' between the various pieces. 
+
+
+\end{document}
+
+
+
