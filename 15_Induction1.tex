@@ -1,0 +1,166 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+%\documentstyle[12pt,amsfonts]{article}
+%\documentstyle{article}
+
+\setlength{\topmargin}{-.5in}
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\textwidth}{6.5truein}
+\setlength{\textheight}{8.5truein}
+%
+%\input ../adgeomcs/lamacb.tex
+%\input ../mac.tex
+%\input ../mathmac.tex
+%
+\input xy
+\xyoption{all}
+\def\fseq#1#2{(#1_{#2})_{#2\geq 1}}
+\def\fsseq#1#2#3{(#1_{#3(#2)})_{#2\geq 1}}
+\def\qleq{\sqsubseteq}
+\newtheorem{theorem}{Theorem}
+%cis51109hw1
+
+%
+\begin{document}
+\begin{center}
+\fbox{{\Large\bf Introduction to Induction}}\\
+\vspace{1cm}
+\end{center}
+
+\vspace{0.5cm}\noindent
+
+
+\section*{Recognizing a pattern}
+
+Consider the following pattern
+
+\begin{align*}
+ 1 + 3 &= 4 \\
+ 1 + 3 +  5 &= 9 \\
+ 1 + 3 + 5 + 7 &= 16
+\end{align*}
+
+
+The pattern at this point is hopefully becoming clear. Let us do one more
+
+$1 + 3 + 5 + 7 + 9 = 25$
+
+Looks like the sum of odd numbers is equal to some perfect square. It is time to formalize this.
+Every odd number is of the form $2k + 1$ for some integer $k$. That should lead us to this
+
+\begin{align*}
+\sum_{i=1}^n 2i - 1 = n^2
+\end{align*}
+
+where $n \in \mathbb{N}$.
+
+Whenever you have a result that follows a pattern like this, in order to prove it you have to show the formula/pattern holds for every single value of $n$. Since $n$ takes values in `discrete' steps (1,2,3 etc), the powerful method called induction can be applied to prove it.
+ 
+\section*{Idea behind induction}
+Induction is used to prove that a theorem holds for all natural numbers (sometimes we will include 0). 
+
+If we are able to show the following. 
+
+\begin{itemize}
+\item the theorem holds for 1 (or some small number)
+\item If the theorem holds for $n-1$, then it will hold for $n$.
+\end{itemize}
+
+Now let's say we want to show the theorem is going to hold for 5. Here's how we could do it
+
+\begin{itemize}
+\item it holds for 1
+\item Since it holds for 1, it holds for 2.
+\item Since it holds for 2, it holds for 3.
+\item Since it holds for 3, it holds for 4.
+\item Since it holds for 4, it holds for 5.
+\end{itemize}
+
+This idea of using the previous to prove the current is the crux of induction. If you have seen recursion in programming, this methodology of solving sub problems and using their solution to solve the big problem should look familiar. It is closely closely related to recursion. 
+
+\section*{Proof algorithm for induction}
+
+\begin{enumerate}
+\item Write the statement of the theorem in terms of a predicate that has an input of a single number.
+\item Prove the theorem for the smallest possible $n$. Generally this will be something like $0$ or $1$ but it depends on the theorem. This is called the base case.
+\item Assume the theorem is true for $n-1$. That is assume P(n-1) is true.
+\item Show that $P(n-1) \implies P(n)$.
+\end{enumerate}
+
+\section*{Proof of summations}
+
+Let us attempt an inductive proof of the first result.
+
+\begin{align*}
+\sum_{i=1}^n 2i - 1 = n^2
+\end{align*}
+
+Define the predicate $P(n)$ as a function which returns true or false depending 
+
+Base case: When $n=1$, there is only term in the summation which is $ 2 - 1 = 1$ and the right side is also 1. So it is true for 1.
+
+Assume the result is true for $n-1$ So 
+
+\begin{align*}
+\sum_{i=1}^{n-1} 2i - 1 = (n-1)^2
+\end{align*}
+
+To show if $P(n-1)$ then $P(n)$.
+
+Consider the sum 
+
+\begin{align*}
+\sum_{i=1}^n 2i - 1 &= \sum_{i=1}^{n-1} 2i - 1 + 2n - 1 \\
+&= (n-1)^2 + 2n - 1 \tag{using P(n-1) true}\\
+&= n^2 - 2n + 1 + 2n - 1 \\
+&= n^2
+\end{align*}
+
+which shows that the predicate is true for $n$.
+
+\section*{Proof of inequalities}
+
+Which is greater $n!$ or $2^n$? 
+
+3! is 6 and $2^3$ is 8. 4! is 24 and $2^4$ is 16. 5! is 120 and $2^5=32$. So looks like the inequality $n! > 2^n$ holds for $n \ge 4$
+
+To prove this claim by induction.
+
+Let the predicate be defined as $n! > 2^n, n \ge 4$.
+
+The base case is $n = 4$ which we have already shown to be true.
+
+Let the statement hold true for $n-1$. Meaning 
+
+\begin{equation} \label{eq:prop}
+(n-1)! > 2^{n-1}
+\end{equation}
+
+To prove this inductively we need to use this to show $n! > 2^n$.
+
+Multiply both sides of ~\ref{eq:prop} by $n$ since $n! = (n-1)!n$.
+
+So we get $n! > 2^{n-1} \cdot n$. Since $n >4$, we know that 
+
+$2^n \cdot n > 2^{n-1} \cdot 2$ 
+
+But $2^{n-1} \cdot 2 = 2^n$
+
+Hence proved
+
+\section*{Example involving sets}
+
+Generalized De-Morgan's law.
+
+We will do this in class and the steps are all in the Zybook.
+
+\end{document}
+
+
+
