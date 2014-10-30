@@ -123,6 +123,21 @@ matches at the start of the game, then the second player can always win. Figure 
 what the strategy for winning is and then prove this strategy does guarantee a win by
 using induction.
 
+Proof by induction on the number of matches n in each pile.
+Base case If both piles contain 1 match, the first player has only one possible move:
+remove the last match from one pile. The second player can then remove the last
+match from the other pile and thereby win.
+Induction hypothesis Suppose that the second player can win any game that starts
+with two piles of $k$ matches, where $1\le k < n$. We now need to show that player 2
+will win when we have $n$ matches. So, suppose that both piles contain n matches.
+A legal move by the first player involves removing j matches from one pile, where
+$0 \le j< n$. The piles then contain $n$ matches and $n - j$ matches. The second player
+can now remove $j$ matches from the other pile. This leaves us with two piles of $n - j$
+matches. Two cases exist - if $j = n$, then the second player just takes all the matches
+from the other pile and wins. If $j \le n$, then we’re now effectively at the start of a game
+with $n - j$ matches in each pile. Since $1 \le  n-j < n$, we can now use the induction
+hypothesis and show that player 2 wins the game.
+
 
 \section*{How do I know I need strong induction}
 Why not always use strong induction? 
