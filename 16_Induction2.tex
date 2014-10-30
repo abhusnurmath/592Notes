@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+%\documentstyle[12pt,amsfonts]{article}
+%\documentstyle{article}
+
+\setlength{\topmargin}{-.5in}
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\textwidth}{6.5truein}
+\setlength{\textheight}{8.5truein}
+%
+%\input ../adgeomcs/lamacb.tex
+%\input ../mac.tex
+%\input ../mathmac.tex
+%
+\input xy
+\xyoption{all}
+\def\fseq#1#2{(#1_{#2})_{#2\geq 1}}
+\def\fsseq#1#2#3{(#1_{#3(#2)})_{#2\geq 1}}
+\def\qleq{\sqsubseteq}
+\newtheorem{theorem}{Theorem}
+%cis51109hw1
+
+%
+\begin{document}
+\begin{center}
+\fbox{{\Large\bf Strong Induction}}\\
+\vspace{1cm}
+\end{center}
+
+
+\section*{Strong induction template}
+Let P(n) be a predicate parameterized by a natural number n. Let $a \le b$, where $a$ and $b$ are integers. Then $P(n)$ is true for all $n \ge a$, if the following two conditions hold:
+
+\begin{enumerate}
+\item $P(a), P(a+1), \ldots ,P(b-1)$ are true (the base case).
+
+\item For all $k \ge b-1$, if $P(j)$ is true for every $a \le j < k$, then $P(k)$ is also true(the inductive step). 
+
+Alternatively think of it as $P(a) \wedge P(a+1) \wedge P(k-1) \rightarrow P(k)$  for all values of $k \ge b$ 
+
+\end{enumerate}
+
+\section*{Strong induction - intuition}
+
+Weak induction uses the following idea. Let's prove it for 1. Then let us use that to prove for 2. Then let us use that to prove for 3 and so on ..
+
+Of course we do not want to write a billion steps to the prove, so we show $P(n-1) \implies P(n)$.
+Assuming $P(n-1)$ is called the induction hypothesis. And then using the induction hypothesis to show $P(n)$ is called the induction step.
+
+Strong induction uses the following idea. Let's prove a bunch of base cases. So for instance we show the result for 1,2,3 and 4. Then when we have to show the result for 5, we exploit the fact that the result holds for 1,2,3 and 4. It may be the case that we only need two of those or three of those. The point is, we have all of them now at our disposal.
+
+Again, the general thing we want to show is $P(m) \wedge P(m+1) \wedge \ldots P(n-1) \rightarrow P(n)$. Here $m$ is the smallest value for which the result holds. 
+
+\section*{Division theorem}
+Let $n$ be a positive integer. Then for every non negative integer $m$ there exist unique integers $q$ and $r$ such that $m = nq + r$ and $0 \le r <n$.
+
+Proof by induction
+
+This statement has a lot of variables floating around. The key is to recognize that if you take any arbitrary $n$ and show that now any $m$ can be expressed as $qn +r$ then for any other choice of $n$ the same reasoning can be applied. So the theorem can be proven by doing induction on $m$.
+
+This means we have a fixed but arbitrary value of $n$ that we have picked
+
+Base Case: For $m =0$.  $0 = n \cdot 0 + 0 $. So the theorem holds for 0. In fact for any $m < n$, we have $m = n \cdot 0 + (n - m)$. Because $m < n$ this gives us $ 0 \le n-m < n$ which satisfies the theorem. 
+
+Now to show that $P(0) \wedge P(1) \wedge \ldots P(k-1) \rightarrow P(k)$  for all $ k \in \mathbb{Z}, k > n$ (we have already shown the result for $k \le n$ by doing the base cases)
+
+We would like to show $k = nq + r$. 
+
+The first thing to note is that it is tough to do anything with just $P(k-1)$ which is the reason we have to resort of strong induction. 
+
+Consider $k - n$, which is a positive integer which is less than $k$. By the induction hypothesis we know
+
+$k - n = nq' + r'$ where $0 \le r '< n$.
+
+But this means
+
+$k = n(q' + 1) + r'$ where $0 \le r' < n$. Since $q'$ is an integer, so is $q' + 1$.
+
+So set $q = (q' +1)$ and $r = r'$ and we are able to express $m = nq + r$ where $q \in \mathbb{Z}$ and $r \in \mathbb{Z}$ and  $0 \le r < n$
+
+This proves that $P(0) \wedge P(1) \wedge P(k - 1) \rightarrow P(k)$ for all $k \ge n$, $k \in \mathbb{Z}$.
+
+Combine this with the base cases and we have our proof by strong induction.
+ 
+\section*{Chocolate division}
+You are given a rectangular chocolate bar consisting of $n$ chocolate squares. Your task is to split the bar into small squares (always breaking along the lines between the squares) with the minimum number of breaks. How many breaks will it take? Prove by induction that the result holds for any $n$.
+
+Proof by induction.
+
+The induction will be on the number of chocolate squares. Since we do not know what the result is in terms of $n$, we first do a few base cases.
+
+Base case: If there is only 1 giant square of chocolate, no splitting is needed, so the number of breaks is 0. If there are 2 squares of chocolate, we split along the 1 dividing line and the number of breaks is 1.
+
+So it looks like the number of break is $n-1$. Define a predicate $P(n)$ to be true when a $n$ square chocolate bar can be split into smaller square in $n-1$ breaks. 
+
+We have already proven a few base cases so to complete the proof we need to show
+
+$P(1) \wedge P(2) \wedge P(k-1) \rightarrow P(k)$
+
+Think about any k piece chocolate bar. To break it into smaller squares there has to be first break. Now we are left with an $m$ piece chocolate bar and an $n$ piece chocolate bar. Clearly, $m +n = k$.
+
+
+By the induction hypothesis, since both $m$ and $n$ are less than $k$ we know that the $m$ piece chocolate bar will take $m-1$ breaks and the $n$ piece bar will take $n-1$ breaks.
+
+So the total number of breaks will be $1 + m-1 + n- 1 = m+n -1 = k - 1$
+
+Therefore by using the induction hypothesis we are able to show that a $k$ square bar will take $k-1$ breaks. 
+
+Combine this with the base cases we proved earlier and we have a proof by induction that any $n$ square chocolate will take $n-1$ breaks to be broken into every single smaller square.
+
+
+\section*{Nim}
+In the parlour game Nim, there are two players and two piles of matches. At each
+turn, a player removes some (non-zero) number of matches from one of the piles. The
+player who removes the last match wins. If the two piles contain the same number of
+matches at the start of the game, then the second player can always win. Figure out
+what the strategy for winning is and then prove this strategy does guarantee a win by
+using induction.
+
+
+\section*{How do I know I need strong induction}
+Why not always use strong induction? 
+
+The key is to understand that the hypothesis in strong induction already includes the hypothesis that weak induction has. So it is always ok to assume inductively that the result holds for all smaller values. Then if you find that you only need to use the $n-1$ case, that will amount to weak induction. 
+
+In some sense this is similar to the concept of a proof by contradiction. Every proof can be done by contradiction. It actually gives you the most to work with. Some proofs by contradiction might be rewritten as a direct proof or a contrapositive proof. 
+
+
+\end{document}
+
+
+
