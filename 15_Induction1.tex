@@ -166,6 +166,33 @@ We will do this in class and the steps are all in the Zybook.
  
 This is a classic puzzle and the solution can actually be found on wikipedia. We will discuss in class or recitation.
 
+\section*{Divisibility proof}
+
+$2^{n+2} + 3^{2n+1}$ is divisible by 7 for all positive integers
+
+Proof by induction
+
+Let $P(n)$ be the predicate that returns true when $2^{n+2} + 3^{2n+1}$ is divisible by 7.
+
+Base case: P(1) says $2^3 + 3^3 = 8 + 27 = 35$ and 35 is $5 \times 7$.
+
+To show $P(n-1) \rightarrow P(n)$.
+
+We are given that $2^{(n-1) + 2} + 3^{2(n-1)+1}$ is divisible by 7. That is $2^{n+1} + 3^{2n-1}$ is divisible by 7.
+
+We now consider $2^{n+2} +3^{2n+1}$ and simplify it to the point where we can use our induction hypothesis and prove the theorem.
+
+\begin{align*}
+2^{n+2} + 3^{2n+1} \\
+&= 2\cdot(2^{n+1} + 3^{2n-1}) + 3^{2n+1} - 2\cdot 3^{2n-1} \\
+&= 2\cdot(2^{n+1} + 3^{2n-1}) + 3^{2n-1}(3^2 - 2) \\
+&= 2\cdot(2^{n+1} + 3^{2n-1}) + 3^{2n-1}\cdot 7 
+\end{align*}
+
+The first term is divisible by 7 because of the induction hypothesis. The second term is clearly divisible by 7.
+
+Hence we have shown that $P(n-1) \rightarrow P(n)$, which along with the base case completes a proof by induction.
+
 \end{document}
 
 
