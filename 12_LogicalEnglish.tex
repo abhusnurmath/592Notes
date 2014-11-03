@@ -226,9 +226,9 @@ Let us break this into a couple of steps
 \begin{enumerate}
 \item $\forall x \text{(x has exactly one best friend)}$
 \item $\forall x \exists y \; \text{BFF}(x,y) \text{ and x does not have any other best friend}$. Where BFF$(x,y)$ is a predicate that is true whenever y is the best friend of x. 
-\item $\forall x \exists y \; \text{BFF} (x,y) \text{ and all other z satisfy } \neg B(x,y)$
-\item $\forall x \exists y \; \text{BFF} (x,y) \wedge \forall z \text{ If } z \neq y \text{ then } \neg B(x,y)$
-\item $\forall x \exists y (BFF (x,y) \wedge \forall z (z \neq y) \rightarrow \neg B(x,y)))$
+\item $\forall x \exists y \; \text{BFF} (x,y) \text{ and all other z satisfy } \neg \text{BFF}(x,z)$
+\item $\forall x \exists y \; \text{BFF} (x,y) \wedge \forall z \text{ If } z \neq y \text{ then } \neg \text{BFF}(x,z)$
+\item $\forall x \exists y (BFF (x,y) \wedge \forall z (z \neq y) \rightarrow \neg \text{BFF}(x,z)))$
 \end{enumerate}
 
 
