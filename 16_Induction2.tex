@@ -91,6 +91,8 @@ Combine this with the base cases and we have our proof by strong induction.
 \section*{Chocolate division}
 You are given a rectangular chocolate bar consisting of $n$ chocolate squares. Your task is to split the bar into small squares (always breaking along the lines between the squares) with the minimum number of breaks. How many breaks will it take? Prove by induction that the result holds for any $n$.
 
+\medskip
+
 Proof by induction.
 
 The induction will be on the number of chocolate squares. Since we do not know what the result is in terms of $n$, we first do a few base cases.
@@ -123,13 +125,20 @@ matches at the start of the game, then the second player can always win. Figure 
 what the strategy for winning is and then prove this strategy does guarantee a win by
 using induction.
 
+\medskip
+
 Proof by induction on the number of matches n in each pile.
+
 Base case If both piles contain 1 match, the first player has only one possible move:
 remove the last match from one pile. The second player can then remove the last
 match from the other pile and thereby win.
+
 Induction hypothesis Suppose that the second player can win any game that starts
 with two piles of $k$ matches, where $1\le k < n$. We now need to show that player 2
-will win when we have $n$ matches. So, suppose that both piles contain n matches.
+will win when we have $n$ matches. 
+
+So, suppose that both piles contain n matches.
+
 A legal move by the first player involves removing j matches from one pile, where
 $0 \le j< n$. The piles then contain $n$ matches and $n - j$ matches. The second player
 can now remove $j$ matches from the other pile. This leaves us with two piles of $n - j$

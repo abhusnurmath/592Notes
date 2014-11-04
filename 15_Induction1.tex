@@ -87,7 +87,10 @@ This idea of using the previous to prove the current is the crux of induction. I
 \section*{Proof algorithm for induction}
 
 \begin{enumerate}
-\item Write the statement of the theorem in terms of a predicate that has an input of a single number.
+\item Write the statement of the theorem in terms of a predicate that has an input of a single number.  Your goal in proving the result/theorem is to show the predicate will always return the value true regardless of what number is used as an input. So your theorem is now stated as 
+
+To show P(n) is true for all positive n (or for all $n \ge 42$ or something like that) where P(n) is defined as ....
+
 \item Prove the theorem for the smallest possible $n$. Generally this will be something like $0$ or $1$ but it depends on the theorem. This is called the base case.
 \item Assume the theorem is true for $n-1$. That is assume P(n-1) is true.
 \item Show that $P(n-1) \implies P(n)$.
