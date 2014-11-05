@@ -1,0 +1,168 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+%\documentstyle[12pt,amsfonts]{article}
+%\documentstyle{article}
+
+\setlength{\topmargin}{-.5in}
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\textwidth}{6.5truein}
+\setlength{\textheight}{8.5truein}
+%
+%\input ../adgeomcs/lamacb.tex
+%\input ../mac.tex
+%\input ../mathmac.tex
+%
+\input xy
+\xyoption{all}
+\def\fseq#1#2{(#1_{#2})_{#2\geq 1}}
+\def\fsseq#1#2#3{(#1_{#3(#2)})_{#2\geq 1}}
+\def\qleq{\sqsubseteq}
+\newtheorem{theorem}{Theorem}
+%cis51109hw1
+
+%
+\begin{document}
+\begin{center}
+\fbox{{\Large\bf Proofs - Part I}}\\
+\vspace{1cm}
+\end{center}
+
+\vspace{0.5cm}\noindent
+`
+For this particular part of the course we will rely on sections from Scheinerman's book which has a good explanation of how a proof needs to be written. While it might be too detailed initially, it is important to establish the fundamentals.
+
+\section*{Example of a proof}
+Consider the following statement of a result that we want to prove.
+
+\begin{theorem}
+The sum of two even integers is even
+\end{theorem}
+
+A possible proof goes as follows
+
+\begin{enumerate}
+\item We show that if $x$ and $y$ are even, then $x + y$ is even.
+\item Let $x$ and $y$ be any even integers
+\item Since $x$ is even, by the definition of even integers we know that $2|x$
+\item Similarly $y$ being even means $2|y$
+\item Since $2|x$ we know $\exists b \in \mathbb{Z}$ such that $x=2b$
+\item Similarly $\exists c \in \mathbb{Z}$ such that $y=2c$
+\item Now observe $x + y = 2b + 2c = 2(b+c)$
+\item Therefore there is an integer $a$ (which happens to equal $b + c$) such that $x + y = 2a$. 
+\item Therefore $2|(x + y)$
+\item Therefore $x + y$ is even
+\end{enumerate}
+
+
+\section*{The steps of a proof}
+The first step is to convert to statement of the theorem into logic. In this case we are able to convert it into an `if-then' statement. 
+
+We also need to introduce some notation in order to begin the proof. For a universally quantified statement like this, we need to show that the statement holds for any value. Therefore it begins with $x$ and $y$ being even integers, but there is nothing special about the choice of these. It would be just as fine to say, `Consider any $x$ and $y$ even integers.'
+
+Once we have our initial step of the proof, we write down what we need to show at the end of the proof. In this case, we need to show $x + y$ is even.
+
+The rest of the proof consists of filling the space from the starting point to the end point. 
+
+Generally, it is a good idea to use definitions. We unravel the definition of even and of the word divisible. Once you have seen this a few times, you can jump directly to the step of saying that $x$ is even implies $\exists a \in \mathbb{Z}$ such that $2a = x$.  If you unravel the definitions all the way through, you get to step 6 and then seemingly you are stuck.
+
+That is when you have to unravel the definitions that are in the final statement. You work your way backwards and get to step 8. 
+
+That gets to stage where you have to connect the top part of the proof with the bottom part of the proof. This middle-part of the proof generally the hard part. You have to establish a connection between what you've got and what you need. 
+
+In this particular case, manufacturing an $a$ is not hard since we are able to produce one just by adding $x$ and $y$ and observing the result.
+
+\section*{Proof for sets}
+There are two basic things to remember for proving things in set theory from first principles
+
+\subsection*{Showing $A \subseteq B$}
+
+The technique is to consider any element $x \in A$ and then logically work out why $x \in B$.
+
+Example Prove that $A = \{x \in \mathbb{Z}| 18 \text{ divides } x \}$ is a subset of $B = \{x \in \mathbb{Z} | 6 \text{ divides }x\}$
+
+Proof: 
+
+Consider any $x \in A$. Then because $18|x$ this means $x = 18y$ for some $y \in \mathbb{Z}$. But that can be written as $x = 6(3y)$, so that means $x$ is divisible by 6.
+
+Therefore $x \in B$.
+
+Since any $x \in A$ is also going to be in $B$, therefore $A \subseteq B$.  
+
+\subsection*{Showing A = B}
+
+The technique is to show $A \subseteq B$ and $B \subseteq A$.
+
+
+
+Example: To show the distributive property of sets from first principle
+
+$A \cup (B \cap C) = (A \cup B ) \cap (A \cup C)$
+
+Proof:
+
+First we need to show $A \cup (B \cap C) \subseteq (A \cup B ) \cap (A \cup C)$
+
+Consider any $x \in A \cup (B \cap C)$
+
+By definition $x \in A$ or $x \in B \cap C$
+
+Case 1: $x \in A$
+
+Then by definition of union $x \in A \cup B $ and $x \in A \cup C$. 
+
+By definition of interesection this would mean $x \in (A \cup B) \cap (A \cup C)$
+
+That means $A \cup (B \cap C) \subseteq (A \cup B ) \cap (A \cup C)$
+
+Case 2:  $x \in B \cap C$
+
+By definition this means $x \in B \wedge x \in C$
+
+By definition of union $x \in (A \cup B) \wedge x \in (A \cup C)$.
+
+This would then mean $ x \in (A \cup B) \cap (A \cup C)$.
+
+That means $A \cup (B \cap C) \subseteq (A \cup B ) \cap (A \cup C)$
+
+So in both cases $A \cup (B \cap C) \subseteq (A \cup B ) \cap (A \cup C)$
+
+\medskip
+
+Now to show $(A \cup B ) \cap (A \cup C) \subseteq A \cup (B \cap C)$
+
+Consider any $x \in (A \cup B ) \cap (A \cup C)$
+
+By definition $x \in A \cup B$ and $ x \in A \cup C$
+
+Consider $x \in A \cup B$. Then $x \in A$ or $x \in B$.
+
+When $x \in A \cup C$. Then $x \in A$ or $x \in C$.
+
+Combining everything there are two possibilities either $x \in A$ or $x \in B \cap C$.
+
+Using the definition of $\cup$ this can just be written as $x \in A \cup (B \cap C)$.
+
+We have therefore shown $(A \cup B ) \cap (A \cup C) \subseteq A \cup (B \cap C)$.
+
+By showing $A \cup (B \cap C) \subseteq (A \cup B ) \cap (A \cup C)$ 
+
+and
+
+$(A \cup B ) \cap (A \cup C) \subseteq A \cup (B \cap C)$.
+
+we can now conclude that 
+
+$A \cup (B \cap C) = (A \cup B ) \cap (A \cup C)$
+
+
+
+\end{document}
+
+
+
