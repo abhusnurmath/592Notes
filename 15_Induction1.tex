@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage{amsfonts,amssymb}
+\usepackage{exercise}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{hyperref}
@@ -195,6 +196,94 @@ We now consider $2^{n+2} +3^{2n+1}$ and simplify it to the point where we can us
 The first term is divisible by 7 because of the induction hypothesis. The second term is clearly divisible by 7.
 
 Hence we have shown that $P(n-1) \rightarrow P(n)$, which along with the base case completes a proof by induction.
+
+\section*{Breaking down or building up}
+
+The most controversial aspect of induction happens to be whether to build the problem up or break the problem down. It is almost universally true that breaking the problem down is the correct way to go. The issue is that in a lot of the algebraic questions, building the problem up works as well. 
+
+The place where this concept of building the problem up definitely breaks down is actually closer to computer science which is the reason for stressing it so much.
+
+Consider for example the handshaking question that we tried to do just before the midterm
+
+\begin{Exercise*}
+Prove that in a group of N people,
+if some of them shake hands,
+there are at least two who have the same number of handshakes. 
+\end{Exercise*}
+
+The solution offered at the \href{http://www.gottfriedville.net/mathprob/comb-shakes.html}{website} has a number of issues but the biggest amongst them is that it assumes that `a person enters the room'. 
+
+On the face of it, this does not seem like a big issue. After all, we know (or think we know) that any instance of 10 people in a room can be considered to have first been an instance of 9 people in the room and the 10th one walked in. And it is true that this would probably be the way that we would try and work it out with someone if we were discussing it informally.
+
+Unfortunately (but only slightly so once you grasp the idea), math is not so kind. The mathematician's counter argument is that `you have now manufactured a specific instance of $n$ people if you take the $n$th person and put her into a group of $n-1$ people. What if my instance is not like that instance. What then? Sadly no amount of hand waving will convince the obstinate mathematician. 
+
+What is worse in this case is that the proof says the $n-1$ case has a pair that has shaken the same number of hands. Now the $n$th person comes in and the whole solution talks about the interaction of this person with this special $n-1$ pair. 
+
+But the problem is talking about $n$ people shaking hands. So what is given to you is the case of $n$ people. The question does not tell you that you have a group of $n$ people with a clearly demarcated $n$th person and a clearly demarcated pair of people among the $n-1$ that have had the same number of hand shakes, which is what it would seem the solution relies on.
+
+\textbf {Bottom line: It is a bad idea to try and build up towards your problem. It is better to break the problem down.}
+
+\begin{Answer}
+Let us write the predicate down clearly. We are saying that in a group of $n$ ($n \ge 2$) people, if people shake hands, there will always be at least one pair of people that have shaken the same number of hands.
+
+The base case of 2 people is easily shown. They either shake hands or do not. 
+
+Now we are allowed to assume that in any group of size $n-1$ that shakes hands, there will be at least 2 people who have the same number of handshakes.
+
+Using this assumption we have to somehow show that in a group of $n$ people that shakes hands, there will be at least 2 people who have the same number of handshakes. 
+
+Consider the $n$ people (you have to start from the instance of the problem that is supplied and break it down).
+
+There are 2 cases 
+
+\begin{enumerate}
+\item One of the people does not shake any hands. Let us call them $A$. Look at the $n-1$ people aside from $A$. That is a group of $n-1$ people with some handshakes. By the induction hypothesis, it should be possible to find someone in that group that has the same number of handshakes. Put person $A$ back in. They have no affect whatsoever on the handshakes. So in the instance provided to us we have found 2 people who have the same number of handshakes.
+
+\item If we have no 0 handshakes person in the room. This means that there is nobody with 0 handshakes. Then this means that the possible values for the number of handshakes are $\{1,2,3,\ldots, n-1\}$. That is a grand total of $n-1$ distinct values but there are $n$ people. This means at least one value will have to be duplicated (this type of reasoning is also called the pigeon hole principle)
+
+\end{enumerate}
+
+\end{Answer}
+
+In both cases, we can show that there will be pair of people with the same number of handshakes. 
+
+We have shown that assuming $P(n-1)$ we have $P(n)$ to be true.
+
+This coupled with the base case completes the proof by induction.
+
+\pagebreak
+
+\subsection*{Further exercises}
+
+Please try and do midterm 2 problem yourself. The solution to that has deliberately been taken out of our solutions to encourage everyone to reattempt the problem in a calmer setting.
+
+\vspace{1in}
+
+Here is another problem that is phrased as a brainteaser but is best solved by induction. Think about the 100 lions case first and then see how you can write a proof by induction that will help you solve this brainteaser for any value of lions (there will always only be one sheep.)
+
+There is an island filled with grass and trees and plants. The only inhabitants are 100 lions and 1 sheep. 
+
+The lions are special: 
+
+\begin{enumerate}
+\item They are infinitely logical, smart, and completely aware of their surroundings.
+\item They can survive by just eating grass (and there is an infinite amount of grass on the island).
+\item They prefer of course to eat sheep.
+\item Their only food options are grass or sheep.
+\item If a lion eats a sheep he TURNS into a sheep (and could then be eaten by other lions).
+\item A lion would rather eat grass all his life than be eaten by another lion (after he turned into a sheep).
+\end{enumerate}
+
+
+Assumptions:
+
+\begin{enumerate}
+\item Assume that one lion is closest to the sheep and will get to it before all others. Assume that there is never an issue with who gets to the sheep first. The issue is whether the first lion will get eaten by other lions afterwards or not.
+\item The sheep cannot get away from the lion if the lion decides to eat it.
+\item Do not assume anything that hasn't been stated above.
+\end{enumerate}
+
+Will that one sheep get eaten or not and why?
 
 \end{document}
 
