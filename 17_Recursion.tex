@@ -53,7 +53,7 @@ there is level of trust that goes on that should not make you really question so
 
 \subsection*{Proving a program works!}
 
-While no one really truly does this in the industry, it is important to know if a program really works. And by this we do not mean, is there a syntax error or a logical flaw. We are asking the question that in a world where the idea that you have (CS calls those algorithms) gets perfectly translated into code (in some non crazy programming language), can you prove that your program will work regardless of the input provided to it.
+It is sometimes important to know if a program really works. And by this we do not mean, is there a syntax error or a logical flaw. We are asking the question that in a world where the idea that you have (CS calls those algorithms) gets perfectly translated into code (in some non crazy programming language), can you prove that your program will work regardless of the input provided to it.
 
 Now the current best practice in the industry to do this proof is to write a bunch of unit tests. But does unit testing equate to a proof of correctness?
 
@@ -77,31 +77,23 @@ Now for computing factorial of $n$, see that the program computes it as $n \time
 
 So the program is just computing $n \times (n-1)!$. But that is just $n!$.
 
-\section*{How long does it take?}
+\section*{How long does it take? aka Big - O}
 
 As noted before, in most cases in the industry, you do not care about proving the correctness of your code (depends on the industry of course). But you do care about how much time your program is going to take!
 
 While there are several ways of measuring time, the theoretical computer science methodology is to basically focus on the particular aspect of scalability. 
 
-Let us see this using a specific example. The simple problem of searching through an array.
+Take for instance the case of searching through an array of size $n$.
 
-\subsection*{Searching}
+The way a CS person expresses the time taken for an algorithm is to say the algorithm is O(f(n)). For instance the search problem can easily be shown to be what is called $O(n)$ (once you know the definition of O). So you will say 
 
-Consider the problem of searching for the number 97 in an array of integers. You would expect (and rightly so!) to spend less time searching for this number in an array of size 100 versus an array of size 1 million. 
-
-Clearly the time taken in a search problem is dependent on the size of the array. But does it grow quadratically, exponentially, logarithmically etc. That is one of the big questions that this topic of analysis of algorithms would like to address.
-
-\section*{Big-Oh}
-
-The way a CS person expresses the time taken for an algorithm is to say the algorithm is O(f(n)). For instance the search problem above can easily be shown to be $O(n)$ (once you know the definition of O). So you will say 
-
-Searching in an unsorted array is an Oh of n operation. 
+Searching in an unsorted array is an O of n operation. 
 
 or 
 
 Searching is a linear operation.
 
-Definition of big-oh: - 
+\textbf{Definition of big-O}: 
 
 Let f and g be two functions defined on some subset of the real numbers. One writes
 \begin{align*}
@@ -175,6 +167,114 @@ def merge(a1, a2):
     return a3
 \end{verbatim}
 
+\section*{Recurrences}
+
+A recurrence relation in the most basic sense is an equation which is trying to define a sequence recursively.
+
+So things like $f(n) = n * f(n-1)$ (factorial) or $T(n) = 2T(n/2) + n$ (merge sort recurrence). 
+
+The analysis of algorithms that are recursive in nature boils down to solving recurrences and we will cover some theorems
+
+\subsection*{First order Linear recurrences with constant coefficients}
+
+\begin{theorem}
+The closed form solution for
+\begin{align*}
+T(n) = \begin{cases}
+rT(n-1) + g(n) & \mbox{if } n > 0\\
+a & \mbox{if } n = 0
+\end{cases}
+\end{align*}
+
+is given by
+
+$T(n) = r^n a + \sum_{i=1}^n r^{n-i} g(i)$
+
+\end{theorem}
+
+\begin{proof}
+The proof of most any property related to recursion and recurrences is best done with induction. 
+
+Base case: When $n=0$, we have $T(0)= a$ as per the definition and as per the formula we have $r^0 a + \sum_{i=1}^0 r^{0-i}g(i)$. But the summation just returns 0 if we are going from a higher number to a lower number. So this just reduces to $r^0 a = a$.
+
+Assume the formula is correct for $T(n-1)$.
+
+We know $T(n) = rT(n-1) + g(n)$.
+
+This is where the induction kicks in. Just substitute the formula for $T(n-1)$ since we have assumed that to be true.
+
+\begin{align*}
+T(n) = 
+&r (r^{n-1} a + \sum_{i=1}^{n-1} r^{n-1-i} g(i)) + g(n) \\
+&= r^n a + \sum_{i=1}^{n-1} r^{n-i} g(i) + g(n) \\
+&= r^n a + \sum_{i=1}^{n-1} r^{n-i} g(i) + r^{n-n}g(n) \\
+&= r^n a + \sum_{i=1}^{n} r^{n-i} g(i) 
+\end{align*}
+
+and this matches the claim being made for $T(n)$.
+
+Combine this with the base case and we have a proof by induction.
+
+\end{proof}
+
+Application of the theorem.
+
+This theorem can readily be applied for a whole number of `real world' problems.
+
+For instance, here is a recursive way of finding the maximum element in an array
+
+\begin{verbatim}
+def maximo(arr):
+    if len(arr) == 1:
+        return arr[0]
+    return max(arr[0], maximo(arr[1:]))
+\end{verbatim}
+
+How long does this function take? What is the running time of this algorithm? 
+
+Both of these questions are generally meant to be answered in the big-O sense. In particular, we need to express $T(n)$ (the time taken on an input of size $n$) as $O(g(n))$ where $g(n)$ is one of the commonly found functions.
+
+As we can see from the algorithm, to solve the $n$ sized version of the problem, we make one call to the function with an $n-1$ sized version of the problem and do a single computation after that.
+
+\begin{align*}
+T(n) = T(n-1) + 1
+\end{align*}
+
+and it is very easy to use the above theorem to see that the closed form solution for this recurrence is going to be $T(n) = n$. So the running time is $O(n)$.
+
+\medskip
+
+Another example from the HW
+
+The Towers of Hanoi recursion worked out to $Moves(n) = 2Moves(n-1) + 1$. Also in this case we have $Moves(0) = 0$.
+
+By direct application of the theorem we have the result that
+
+\begin{align*}
+Moves(n) &= 2^n \cdot 0+ \sum_{i=1}^n 2^{n-i} \cdot 1 \\
+&=  2^{n-1} + 2^{n-2} + \ldots + 1 \\
+&= 2^{n+1} - 1
+\end{align*}
+
+\subsection*{Mergesort recurrence}
+
+For mergesort we can write the recurrence as the following
+
+\begin{align*}
+T(n) = 2T(n/2) + T_{merge}
+\end{align*}
+
+Also as a base case, assume that sorting an array of size 1 takes some constant time $a$. $T(1) = a$.
+
+since we are dividing the problem into roughly equal halves and then doing the merging. Merging involves going through the arrays in a loop but each of the arrays that are being merged is just looped over once. So we conclude that merging is a linear time operation. And we can write $T_{merge}$ as some $kn$ for a positive integer constant $k$.
+
+\begin{align*}
+T(n) &= 2T(n/2) + kn \\
+&= 4T(n/4) + kn + kn \\
+&= 8T(n/8) + kn + kn + kn \\
+&= 2^i T(n/2^i) + ikn\\
+&= an + kn \log_2 n 
+\end{align*}
 
 \end{document}
 
