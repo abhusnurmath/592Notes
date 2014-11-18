@@ -53,8 +53,8 @@ The well known Fibonacci sequence can be defined by the following function
 
 \begin{align*}
 f(n) = \begin{cases}
-1 & \mbox{if } n=1 \\
-1 & \mbox{if } n = 2 \\
+1 & \mbox{if } n=0 \\
+1 & \mbox{if } n = 1 \\
 f(n-1) + f(n-2) & \mbox{ ow }
 \end{cases}
 \end{align*}
@@ -94,8 +94,8 @@ f(n) = c \left(\frac{1 + \sqrt{5}}{2} \right)^n + s \left(\frac{1 - \sqrt{5}}{2}
 How do we get the values of $c$ and $s$? We use the base cases to say
 
 \begin{align*}
-c \cdot \frac{1 + \sqrt{5}}{2} + s \cdot \frac{1 - \sqrt{5}}{2} = 1 \\
-c\left(\frac{1 + \sqrt{5}}{2}\right)^2 + s\left(\frac{1 - \sqrt{5}}{2}\right)^2 = 1 
+c+ s  = 1 \\
+c\left(\frac{1 + \sqrt{5}}{2}\right) + s\left(\frac{1 - \sqrt{5}}{2}\right) = 1 
 \end{align*}
 
 Solving these two simultaneous equations we get the values of $c$ and $s$ and the closed form
