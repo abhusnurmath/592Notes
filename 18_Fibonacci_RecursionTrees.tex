@@ -121,6 +121,33 @@ When solving recurrences that involve dividing the initial input into halves, th
 
 See the handout on canvas for complete explanation. Look under the 'other resources' folder.
 
+\section*{Master theorem}
+The recursion trees follow a general pattern and the more common ones can actually all be solved using a very powerful theorem called the master theorem that can be used quite easily for things like mergesort.
+
+\begin{theorem}
+
+Let a and b be positive real numbers, with $a \ge 1$
+and $b > 1$. Let $T(n)$ be defined for integers $n$ that are powers of $b$ by
+
+\begin{align*}
+T(n) = \begin{cases}
+aT(n/b) + f(n) &\mbox{ if } n > 1 \\
+d &\mbox{ if } n = 1
+\end{cases}
+\end{align*}
+Then we have the following:
+
+\begin{enumerate}
+\item If $f(n) = \Theta(n^c )$, where $\log_b a < c$, then
+$T(n) = \Theta(n^c ) = \Theta (f(n))$.
+\item If $f(n) = \Theta(n^c )$, where $\log_b a = c$, then
+$T(n) = \Theta(n^c logn) = \Theta (f(n)logn ).$
+\item  If $f(n) = \Theta(n^c )$, where $\log_b a > c$, then $T(n) = \Theta(n \log_b a )$.
+
+\end{enumerate}
+
+
+\end{theorem}
 
 
 
