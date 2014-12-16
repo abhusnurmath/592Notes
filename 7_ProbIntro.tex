@@ -15,8 +15,8 @@
 \setlength{\textheight}{8.5truein}
 %
 %\input ../adgeomcs/lamacb.tex
-\input ../mac.tex
-\input ../mathmac.tex
+%\input ../mac.tex
+%\input ../mathmac.tex
 %
 \input xy
 \xyoption{all}
@@ -81,7 +81,7 @@ Certain properties need to be satisfied by this probability distribution.
 The probability of the single outcome $s$ is $p(s)$. If $E \subseteq S$ is an event, then the probability of the event $E$ is  
 
 \begin{align*}
-p(E) = \sum_{s \in S} p(s) 
+p(E) = \sum_{s \in E} p(s) 
 \end{align*}
 
 This definition is especially useful when dealing with situations where not every outcome is equally likely. 
@@ -155,11 +155,7 @@ Therefore the probability of the event itself is
 1 - \frac{365 \times 364 \times \cdots (365-m+1)}{365^m}
 \end{align*}
 
-This initially might seem like an uninteresting geeky expression until you start plugging numbers in. Here is a plot of number of people versus the probability of this event.
-
-\includegraphics[scale=0.6]{birthday.png}
-
-We have 42 in this class. There is a pretty good chance there is at least one pair that shares birthdays.
+This initially might seem like an uninteresting geeky expression until you start plugging numbers in and noticing the really quickly increasing nature.
 
 \section*{Application - Hashing and hashmaps}
 
