@@ -4,6 +4,7 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage[autostyle]{csquotes}
 %\documentstyle[12pt,amsfonts]{article}
 %\documentstyle{article}
 
@@ -80,6 +81,8 @@ Is this symmetric? No. For instance $1 \le 2$ but it is not the case that $2 \le
 
 Is this transitive? Yes. If $a \le b$ and $ b \le c$ then it is clearly true that $a \le c$.
 
+Is this anti-symmetric? Yes. If $a \le b$ and $b \le a$ then it must be the case that $a = b$.
+
 \item Given the set $U$ = the set of all the states in the USA. 
 
 Let us define a relation as follows. Two states are related if and only if they are adjacent (they share a land or water border). 
@@ -92,7 +95,17 @@ Is this transitive? No. While we have not covered the concept of a mathematical 
 
 Where does this fall apart? Virginia borders North Carolina. North Carolina borders South Carolina. But VA does not border SC. 
 
+Is this anti-symmetric? No. The same example as above works as a counter example. 
+
 \end{enumerate}
+
+\medskip
+
+Is it possible for a relation to be symmetric and anti-symmetric at the same time?
+
+This will lead to the concept of a vacuously true statement. 
+
+Consider the set $\{1\}$ and the relation $\{(1,1)\}$. While seemingly trivial and stupid, this relation turns out to be both symmetric and anti-symmetric.
 
 
 \section*{Definition of a function}
