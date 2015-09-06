@@ -95,7 +95,7 @@ Is this transitive? No. While we have not covered the concept of a mathematical 
 
 Where does this fall apart? Virginia borders North Carolina. North Carolina borders South Carolina. But VA does not border SC. 
 
-Is this anti-symmetric? No. 
+Is this anti-symmetric? No. The same example as above works as a counter example. 
 
 \end{enumerate}
 
@@ -106,18 +106,6 @@ Is it possible for a relation to be symmetric and anti-symmetric at the same tim
 This will lead to the concept of a vacuously true statement. 
 
 Consider the set $\{1\}$ and the relation $\{(1,1)\}$. While seemingly trivial and stupid, this relation turns out to be both symmetric and anti-symmetric.
-
-\subsection*{Arrow diagrams for relations}
-
-One useful way of visualizing a relation from $A$ to $B$ is to draw a point for every element in the set $A$ and every element in the set $B$ and then $aRb$ draw a arrow going from $a$ to $b$. More on this when we get to graph theory. Also, the zybook describes this in more detail.
-
-\subsection*{The empty relation}
-
-Since the $\emptyset$ is a subset of every set, the relation which is just the $\emptyset$ is a totally valid relation. Is the empty relation reflexive, symmetric, transitive, anti-symmetric? 
-
-\subsection*{Equivalence relations}
-
-Equivalence relations on a set $A$ have this very nice property that you can use them to partition a set. Given any equivalence relation $R$ on $A$, take each element  $a \in A$ in turn. Form the equivalence class of $a$ generally denoted by $[a] = \{x \in A | xRa\}$. These equivalence classes can then be shown to form a partition of $A$.
 
 
 \section*{Definition of a function}
@@ -197,6 +185,25 @@ Of the two functions above, which is one to one.
 From an arrow-diagram identifying whether a function is one-one is immediate. You just have to make sure that you do not have two arrow heads incident on the same point
 
 \includegraphics[scale=0.6]{oneone.png}
+
+Example
+
+Is the function $f(x) = x^2$ one-one when the domain and co-domain are the set of real numbers?
+
+Not one-one. For example $f(1) =  f(-1)$, but obviously 1 is not equal to -1.
+
+Is the same function one-one when the domain and co-domain are the set of natural numbers?
+
+Now the function is one-one because 
+
+\begin{align*}
+x^2 = y^2 \\
+& \implies x^2 - y^2 = 0 \\
+& \implies (x - y) (x + y) = 0\\
+& \implies x = y \text{ or }  x = -y
+\end{align*}
+
+But both $x$ and $y$ are natural numbers and therefore are positive so it must be the case that $x = y$. Therefore the function is one to one.
 
 \section*{Onto}
 A function is said to be onto if the entire co-domain is `covered'. More formally, $f:X \rightarrow Y$ will be onto if for every $y \in Y$, there is some $x \in X$ such that $f(x) = y$. 
