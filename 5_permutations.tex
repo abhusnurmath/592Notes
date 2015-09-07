@@ -14,8 +14,8 @@
 \setlength{\textheight}{8.5truein}
 %
 %\input ../adgeomcs/lamacb.tex
-\input ../mac.tex
-\input ../mathmac.tex
+%\input ../mac.tex
+%\input ../mathmac.tex
 %
 \input xy
 \xyoption{all}
@@ -137,7 +137,7 @@ For the choice mentioned above for instance, you could arrange them as
 
 That is 6 ways.
 
-So for each choice, we have 6 ways to do the arrangments. That means that
+So for each choice, we have 6 ways to do the arrangements. That means that
 
 \begin{align*}
 \text{Number of choices} \times 6 &= 8 \cdot 7 \cdot 6 \\
@@ -154,7 +154,7 @@ There is a formula and terminology associated with this. We write ${n \choose r}
 
 Now that you have seen this notation and formula, you can answer the previous question even more directly by saying
 
-The number of choices is the same as picking a set of 3 from a set of 6. That is $\binom{6}{3}$.
+The number of choices is the same as picking a set of 3 from a set of 8. That is $\binom{8}{3}$.
 
 \section*{The k to 1 rule}
 Let $f: X \rightarrow Y$ be a function with the property that for every $y \in Y$, there are exactly $k$ different $x \in X$ such that $f(x) = y$
@@ -184,46 +184,11 @@ So this is a bijection between 16 bit strings and 4 element subsets. Therefore t
 
 How many 4 element subsets are there? Again, that is $\binom{16}{4}$.
 
-\section*{Applications}
-\begin{itemize}
-\item IP Addresses
 
-\emph{See the Discrete Mathematics with Applications book for complete details. The relevant portion of the book is on Canvas. This little section is pretty much a verbatim copy of that example}
+\section*{More examples to distinguish between permutation and combinations}
 
-In order to communicate effectively, each computer in a network needs a distinguishing name called an address. For the Internet this address is currently a 32-bit number called the Internet Protocol (IP) address (although 128-bit addresses are being phased in to accommodate the growth of the Internet). For technical reasons some computers have more than one address, whereas other sets of computers, which use the Internet only sporadically, may share a pool of addresses that are assigned on a temporary basis. Like telephone numbers, IP addresses are divided into parts: one, the network ID, speciﬁes the local network to which a given computer belongs, and the other, the host ID, speciﬁes the particular computer.
+Do the zybook participation activity 4.6.2 (to be done in class).
 
-An example of an IP address is 10001100 11000000 00100000 10001000, where the 32 bits have been divided into four groups of 8 for easier reading. To make the reading even easier, IP addresses are normally written as `dotted decimals,' in which each group of 8 bits is converted into a decimal number between 0 and 255. For instance, the IP address above converts into 140.192.32.136
-
-In order to accommodate the various sizes of the local networks connected through the Internet, the network IDs are divided into several classes, the most important of which are called A, B, and C. In every class, a host ID may not consist of either all 0’s or all 1’s.
-
-Class B network IDs are used for medium to large local networks. The two left-most bits are set to 10, and the left-most 16 bits give the full network ID. The remaining 16 bits are used for individual host IDs.
-
-\begin{enumerate}
-\item How many class B networks are there?
-
-The network ID is the left most 16 bits. But the first two bits have to be a 1 followed by 0. This means we only have freedom in the remaining 14 bits. Each of those bits has 2 choices a 1 or a 0. So $2^{14}$.
-
-\item How many hostIDs can there be on any class B network?
-
-Now we are given a network ID and we are basically assigning IDs to the individual computers. We have 16 bits to play with. So that would just be $2^{16} = 65536$. But there is a rule which says that the host IDs cannot be all 0s or all 1s. So that just means we need to subtract 2 from this.
-Hence 65534 computers can be connected on any given class B network.
-
-\item What is the dotted decimal form of a computer on a class B network?
-
-The network ID part goes from 10000000 00000000 to 10111111 11111111. 
-
-That means from 128.0 to 191.255
-
-So the dotted decimal form of computers on a class B network would be of the form $w.x.y.z$
-where w ranges from 128 to 191 and the others range from 0 to 255.
-The only caveat is that both y and z cannot be 0. Also both y and z cannot be 255.
-This is because you cannot have an all 0 hostID and cannot have an all 1 hostID.
-
-\end{enumerate}
-
-
-
-\end{itemize}
 
 \end{document}
 
