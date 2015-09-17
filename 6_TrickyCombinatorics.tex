@@ -15,8 +15,8 @@
 \setlength{\textheight}{8.5truein}
 %
 %\input ../adgeomcs/lamacb.tex
-\input ../mac.tex
-\input ../mathmac.tex
+%\input ../mac.tex
+%\input ../mathmac.tex
 %
 \input xy
 \xyoption{all}
@@ -189,9 +189,19 @@ That shows us the following identity
 
 As with most of these identities it is possible to provide a combinatorial proof.
 
-The LHS is the number of ways of picking $k$ objects from a set of $n$ objects.
+The LHS(left hand side) is the number of ways of picking $k$ objects from a set of $n$ objects.
 
-Let's say that the $k$th object is kept aside. Then to pick $k$ objects we can either pick all $k$ from the remaining $n-1$ or we can pick $k-1$ objects from the remaining $n-1$ and then supplement it with this object that we have kept aside. Those two choices are exactly what we have in the right side of the equation.
+Let's say that the $k$th object is kept aside. Then to pick $k$ objects we can either pick all $k$ from the remaining $n-1$ or we can pick $k-1$ objects from the remaining $n-1$ and then supplement it with this object that we have kept aside. Those two choices are exactly what we have being added in the right side of the equation. 
+
+The LHS and RHS are both counting the same thing and therefore must be equal.
+
+In general, a combinatorial proof requires the following steps
+
+\begin{itemize}
+\item Make up a question whose answer is the left side of the equation.
+\item Tell the reader why the right side of the equation is also counting the exact same thing but in a different manner.
+\item End the proof by just saying that since both methods are counting the same quantity they must be equal.
+\end{itemize}
 
 \end{document}
 
