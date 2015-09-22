@@ -137,8 +137,7 @@ where $F^c$ is just the event of $F$ not happening.
 
 \textbf{Example - Taken from UWash notes}
 
-In Orange County, 51\% of the adults are males. (It doesn't take too much advanced
-mathematics to deduce that the other 49\% are females.) One adult is randomly selected
+In Orange County, 51\% of the adults are males. One adult is randomly selected
 for a survey involving credit card usage.
 \begin{enumerate}
 \item Find the prior probability that the selected person is a male.
@@ -171,6 +170,72 @@ P(M|S) = \frac{0.51 * 0.095}{0.51 * 0.095 + 0.49 * 0.017}
 
 So there is an 85.3\% chance that it is a male if you observe cigars! Stands to reason. Men smoking is a far more likely event than women smoking (based on the data). 
 
+\section*{Bayes Theorem and medical tests}
+Bayes theorem is used to evaluate probabilities for medical tests. Here is a questions as an example
+
+\medskip
+
+There is a medical test that has been designed to screen for a disease that affects 5 in 1000 people. Suppose the false positive rate is 3\% and the false negative rate is 1\%. 
+
+What is the probability that a randomly chosen person who tests positive actually has the disease?
+
+\textbf{Solution}
+
+We first need to clearly understand what false positive and false negative mean. Both these terms are used in detection systems and it is terminology that is commonly used for classifiers in machine learning as well.
+
+False positive - the test says the person has the disease when the person actually does not have it.
+
+False negative - the test says the person does not have the disease when the person actually does have it.
+
+Now to solve this question, let us define some events
+
+\begin{itemize}
+\item Let $A$ be the the event that the person tests positive for the disease.
+\item $B_1$ be the event that a randomly chosen person has the disease.
+\item $B_2$ be the event that a randomly chosen person does not have the disease.
+\end{itemize}
+
+Now the question is asking $P(A|B_1)$.
+
+\begin{align*}
+P(B_1|A) = \frac{P(A|B_1)P(B_1)}{P(A|B_1)P(B_1) + P(A|B_2)P(B_2)}
+\end{align*}
+
+Now $P(B_1)$ is  just the probability that a randomly selected person has a disease. So 0.005.
+Also $P(B_2)$ is just the probability that a randomly selected person does not have the disease. So 0.995.
+
+$P(A|B_1)$ = 1 - probability of a false negative = 1- 0.01= 0.99
+
+$P(A|B_2)$ = probability of a false positive = 0.03
+
+Plugging all these values back into the original 
+
+\begin{align*}
+P(B_1|A) &= \frac{0.99*0.005}{0.099*0.005 + 0.03 * 0.995} \\
+&= 0.1422 \\
+&= 14.22\%
+\end{align*} 
+
+What is the probability that a randomly chosen person who tests negative does not actually have disease
+
+This is now asking us to compute $P(B_2|A^c)$ which can again be broken by Bayes theorem as 
+
+\begin{align*}
+P(B_2|A^c) = \frac{P(A^c|B_2)P(B_2)}{P(A^c|B_2)P(B_2) + P(A^c|B_1)P(B_1)}
+\end{align*}
+
+Similar to our previous reasoning
+
+$P(A^c|B_2)$ = 1 - probability of a false positive = 1 - 0.03 = 0.97
+
+$P(A^c|B_1)$ = probability of a false negative = 0.01
+
+Plugging these values into the above equation we get a probability of 99.99\%.
+
+Therefore we have a very high probability that someone who tests negative actually does not have the disease. We have a low probability that someone who is testing positive actually has the disease. The rationale behind this type of test is that as a screening test it is more important to make sure that the negative results are truly negative. 
+
+Those that test positive are asked to take a test where the probability of detecting the disease when the person has the disease is much higher. But those tests might be expensive and the cheaper screening test ensures that not all of the population has to pay for those expensive tests.
+
 \section*{Application - Bayesian Machine Learning}
 
 The primary goal of machine learning is learning models of data. 
@@ -186,7 +251,7 @@ Once you have observed the data $D$, you evaluate how probable the data was unde
 
 How do you compare two models M and M'? We compute their relative probability given the data: $P(M)P(D|M)$ and $P(M')P(D|M')$.
 
-This leads to a very common technique called MAP estimation which stands for maximum a posteriori. Taken from wikipedia - \href{http://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation}{MAP}.
+This leads to a very common technique called MAP estimation which stands for maximum a posteriori. Taken from wikipedia - \href{http://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation}{\underline{MAP}}.
 
 
 
