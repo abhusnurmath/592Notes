@@ -267,10 +267,11 @@ Here for instance is the statement of what is called the division theorem -
 \paragraph{}
 For every positive integer $n$  and every non-negative integer $m$ , there are non-negative integers $q$ and $r$ with $0 \le r < n$ such that $m = qn + r$.
 
-Here is one way of expressing this using quantifiers and logical connectors,
+Here is one way of expressing this using quantifiers and logical connectors. We introduce the notation $\mathbb{W}$ to represent the set of non-negative integers. 
+This is because we went with the convention of not including 0 in our natural numbers.
 
 \begin{align*}
-\forall n \in \mathbb{Z^+} (\forall m \in \mathbb{N} (\exists q \in \mathbb{N} (\exists r \in \mathbb{N} ((r < n) \wedge (m = qn +r))))
+\forall n \in \mathbb{N} (\forall m \in \mathbb{W} (\exists q \in \mathbb{W} (\exists r \in \mathbb{W}  ((r < n) \wedge (m = qn +r))))
 \end{align*}
 
 The parentheses are used over here just to make things clearer. It would not be wrong to use the phrase `such that' between the various pieces. 

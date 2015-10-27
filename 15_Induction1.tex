@@ -85,7 +85,7 @@ Now let's say we want to show the theorem is going to hold for 5. Here's how we 
 
 This idea of using the previous to prove the current is the crux of induction. If you have seen recursion in programming, this methodology of solving sub problems and using their solution to solve the big problem should look familiar. It is closely closely related to recursion. 
 
-\section*{Proof algorithm for induction}
+\section*{Outline of an induction proof}
 
 \begin{enumerate}
 \item Write the statement of the theorem in terms of a predicate that has an input of a single number.  Your goal in proving the result/theorem is to show the predicate will always return the value true regardless of what number is used as an input. So your theorem is now stated as 
@@ -93,8 +93,12 @@ This idea of using the previous to prove the current is the crux of induction. I
 To show P(n) is true for all positive n (or for all $n \ge 42$ or something like that) where P(n) is defined as ....
 
 \item Prove the theorem for the smallest possible $n$. Generally this will be something like $0$ or $1$ but it depends on the theorem. This is called the base case.
-\item Assume the theorem is true for $n-1$. That is assume P(n-1) is true.
-\item Show that $P(n-1) \implies P(n)$.
+\item Show $P(n-1) \implies P(n)$
+
+Remember that to prove the above implication we need to assume $P(n-1)$ to be true and use that in some manner when we are proving $P(n)$.
+
+It is common convention to call the $P(n-1)$ is true assumption the \emph{induction hypothesis}.
+
 \end{enumerate}
 
 \section*{Proof of summations}
@@ -166,7 +170,7 @@ We will do this in class and the steps are all in the Zybook.
 
 \section*{Induction puzzle}
 
- In Josephine's Kingdom every woman has to pass a logic exam before being allowed to marry. Every married woman knows about the fidelity of every man in the Kingdom except for her own husband, and etiquette demands that no woman should tell another about the fidelity of her husband. Also, a gunshot fired in any house in the Kingdom will be heard in any other house. Queen Josephine announced that unfaithful men had been discovered in the Kingdom, and that any woman knowing her husband to be unfaithful was required to shoot him at midnight following the day after she discovered his infidelity. How did the wives manage this?
+ In Josephine's kingdom every woman has to pass a logic exam before being allowed to marry. Every married woman knows about the fidelity of every man in the kingdom except for her own husband, and etiquette demands that no woman should tell another about the fidelity of her husband. Also, a gunshot fired in any house in the kingdom will be heard in any other house. Queen Josephine announced that unfaithful men had been discovered in the kingdom, and that any woman knowing her husband to be unfaithful was required to shoot him at midnight following the day after she discovered his infidelity. How did the wives manage this?
  
 This is a classic puzzle and the solution can actually be found on wikipedia. We will discuss in class or recitation.
 
@@ -203,7 +207,32 @@ The most controversial aspect of induction happens to be whether to build the pr
 
 The place where this concept of building the problem up definitely breaks down is actually closer to computer science which is the reason for stressing it so much.
 
-Consider for example the handshaking question that we tried to do just before the midterm
+\subsection*{Autocities}
+
+One example of the build up versus breaking down aspect of induction proofs is the following
+
+Define an autocity to be a city that has a road that leads to some other(different) city. 
+
+Claim: In any collection of $n$ autocities there is a way (obviously via a collection of roads) to get from any city to any other city.
+
+Let us try a proof by induction
+
+Base case: We need at least 2 cities for the definition of autocity to work. With 2 cities, the only way that both of them can be autocities is if there is a road connecting them. So the statement of the claim is obviously true when we have 2 cities.
+
+Induction hypothesis: In any collection of $n-1$ autocities there is a path between any pair of cities.
+
+Now consider adding in the $n$th city. For this city to be an autocity, it must be connected via a road to one of these $n-1$ autocities. Now consider any pair of autocities in this collection of $n$. If the pair comes from the previous $n-1$ cities there is a path via the induction hypothesis. If the pair includes the newly added city, we can use a road to get from the $n$th city to whatever city it was connected to. Let's call that $D$. Then there is a path from $D$ to any other city (by the induction hypothesis). So now we have a path between any pair of cities. Hence proved.
+
+Seemingly we have proven by induction.
+
+But let us step back and see if the claim is true. It isn't. See below!
+
+\includegraphics[scale=0.5]{autocity.png}
+
+Try doing this same proof by taking  any collection of $n$ autocities and removing an autocity. You will find that it is impossible to make the claim that by removing an autocity you still have a collection of autocities. So by the breaking down method you will not run into an incorrect proof.
+
+
+Consider the example of the following question
 
 \begin{Exercise*}
 Prove that in a group of N people,
