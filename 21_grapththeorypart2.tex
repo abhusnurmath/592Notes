@@ -81,138 +81,36 @@ As an example here are two non-isomorphic graphs. They however are not violating
 \includegraphics[scale=0.5]{noniso.png}
 
 
-\section*{Terminology}
+\section*{Circuits and cycles}
 
-The two vertices that are part of an edge are its endpoints.
+A circuit is a walk in which the first vertex is the same as the last vertex. A sequence of one vertex, denoted $<a>$, is a circuit of length 0. Any circuit must have at least one repeated vertex because, by definition, the first and last vertices of a circuit are the same. A circuit is a cycle if it has length at least three and there are no additional repeated vertices, besides the first and the last. 
 
-When a vertex is an endpoint of an edge we say the edge is incident on the vertex.
+\section*{Connectedness and connected components}
 
-Note that two vertices connected by an edge is describing a relation (recall what that means from a previous part of the course).
+A vertex v is said to be connected to vertex w in a graph G if there is a path in G from v to w. Since G is assumed to be undirected, a path from v to w implies that there is also a path from w to v. By definition, every vertex is connected to itself by a path of length 0. A vertex that is not connected with any other vertex is called an isolated vertex.
 
-A graph can either be directed meaning that there can be an edge from vertex $u$ to vertex $v$ without having an edge from vertex $v$ to vertex $u$ or undirected meaning that $(u,v) \in E \leftrightarrow (v,u) \in E$.
+A graph is said to be connected if every vertex is connected to every other vertex in the graph and is disconnected otherwise. The property of being connected is a desirable property in many situations such as when the graph represents a road or communication network. If a graph is not connected, it has more than one connected component. 
 
-If we view this in terms of relations, an undirected graph is describing a symmetric relationship.
+\section*{Trees}
 
-Loop(or sometimes self-loop) - an edge that joins a vertex to itself.
+A connected acyclic (no cycles present) graph is called a tree. 
 
-Complete graph - a graph where every vertex is connected to every other vertex.
+Trees are one of the fundamental structures in computer science. You will learn about them in data structures. You will also learn about them in algorithms.
 
-A complete graph on $n$ vertices is denoted as $K_n$.
+Properties of trees
 
-\medskip
+We can show the following property
 
-\textbf{Question}
+There is exactly one path between each pair of distinct vertices in a tree.
 
-How many edges does a complete graph have?
+Proof - 
 
-\medskip
+First we realize that we can say very easily that there must be at least one path between each pair of distinct vertices. Note that if we do not have that case then the graph is not connected. But being a tree it must be connected.
 
-That is the same as $\binom{n}{2}$ since for any pair of distinct vertices they have to be connected by an edge.
+Now why can't we have more than 1 path. 
 
-\section*{Paths and walks}
-
-For the remainder of the course we will be focusing on the following type of graph
-
-\begin{itemize}
-\item undirected
-\item no self loops
-\item no parallel edges
-\item finite number of edges
-\end{itemize}
-
-whenever we have to deviate from this type of graph it will be made clear.
-
-
-\textbf{Path} - A path is an alternating sequence of vertices and edges that satisfy the following 
-
-\begin{enumerate}
-
-
-\item it starts and ends with a vertex.
-\item each edge joins the vertex before it in the sequence to the vertex after it in the sequence.
-\item no vertex appears more than once.
-\end{enumerate}
-
-A \textbf{walk} satisfies the first two conditions but not the third
-
-\medskip
-
-\textbf{Result}
-
-If there is a walk between two vertices $u$ and $v$, there has to be a path between vertices $u$ and $v$.
-
-Proof
-
-Consider any walk between vertices $u$ and $v$. There are two cases
-
-Case 1 - There is no vertex that is repeated in the walk. In this case then by definition this walk is a path and we are done.
-
-Case 2 - There exists a vertex $x$ in this walk such that it is repeated. For this vertex, we can make a shorter walk by removing the part of the walk that is between the first and last occurrences of the the vertex. That is, include the last occurrence of $x$ but not the first. Repeat the process of finding these repeated vertices and making shorter walks. Note that in each case we are eliminating one of the vertices from the list of repeated vertices. Therefore eventually we will have no repeated vertices in our walk and our walk will reduce to a path. (draw a picture to complete this proof).
-
-\medskip
-
-The length of a path is the number of edges in the path.
-
-There can be multiple paths between two vertices. An algorithms course is likely to spend a fair number of lectures talking about different methods to find shortest paths in graphs.
-
-\section*{Degrees}
-
-The degree of a vertex is the number of edges that are incident on it. 
-
-Note that if you have a self-loop, it counts twice to the degree of the vertex. We are allowing self loops in the discussion of degrees.
-
-\includegraphics[scale=0.5]{graph2.png}
-
-In the above example the degree of vertex d, denoted by deg(d) = 3. deg(a) = 2 etc.
-
-\begin{theorem}
-Sum of the degrees of the vertices is twice the number of edges.
-\end{theorem}
-
-\textbf{Proof}
-
-Proof by induction on the number of edges. Consider that we are given a graph with $e$ edges and we want to prove the result holds for any $e$.
-
-Base case: If the number of edges is 0 then the sum of the degrees is 0. Twice the number of edges is also 0. Done.
-
-Induction hypothesis: Suppose that for $0 < k \le e$  the result holds.
-
-Now consider a graph with $e > 0$ edges. Let $e_1$ be some edge in this graph. Consider what happens when we delete this edge (note that deleting an edge means just deleting the edge and not deleting the associated vertices). We get a graph $G'$ which has 1 less edge. So we can apply the induction hypothesis to it.
-
-Applying the induction hypothesis says that the sum of degrees of the vertices in $G'$ is $2(e-1)$.
-
-Now let us consider 2 cases for the edge that we removed
-
-Case 1: the removed edge was a self loop. When we add this edge back in the degree of one single vertex will go up by 2. So the sum of the degrees will be $2(e-1) + 2 = 2e$.
-
-Case 2: the removed edge joined two distinct vertices. When we add this edge back the degree of two vertices goes up by 1 each. Again the sum of the degrees will be $2e$.
-
-
-Combining this with the base case of 0 edges, we have a complete proof by induction. QED!
-
-\section*{Using graphs to prove results}
-
-A famous theorem says that in any group of 6 people you are bound to find either a group of 3 distinct mutual friends or 3 distinct mutual enemies (obviously this assumes for any given pair of people they are either mutual friends or mutual enemies). 
-
-Proof
-
-Consider one person. Call them Sally. Divide the rest of the people into 2 buckets - either they are friends of Sally's or enemies of Sally. Since we have 2 buckets and 5 people it must be the case that one of the buckets contains at least 3 people. Without loss of generality, let us assume the friends bucket has at least 3 people (if it has more than 3 it is even better for our proof).
-
-Then let us draw the 'friendship' graph. It is going to look like this, with the red vertex being Sally.
-
-\includegraphics[scale=0.5]{friends.png}
-
-Now consider what happens if we add any edge to this graph. That would immediately create a triangle (a $K_3$) which means that we have 3 distinct mutual friends and we are done with proving the result.
-
-Consider what happens if we do not add any edge to this graph. That would mean that none of Sally's friends are friends with each other. That immediately means that we have 3 enemies. 
-
-So currently we have shown that if any person has 3 friends then the theorem is true. 
-
-The remainder of the proof is simple because we only have to worry about  
-
-a) what happens if an arbitrarily chosen person has more than 3 friends - this is easy because if that person has more than 3 friends we can pick any 3 of them and prove the result using the above argument.
-
-b) what happens if the arbitrarily chosen person does not have at least 3 friends - this must mean that the chosen person has at least 3 enemies. That results in a similar argument to before with the words friend and enemy being interchanged.
+Show how if you have more than 1 path, you can easily find a cycle in the graph. Easier to draw this than to explain it mathematically.
+ 
 
 \end{document}
 
