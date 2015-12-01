@@ -162,6 +162,30 @@ Case 2: the removed edge joined two distinct vertices. When we add this edge bac
 
 Combining this with the base case of 0 edges, we have a complete proof by induction. QED!
 
+\section*{Using graphs to prove results}
+
+A famous theorem says that in any group of 6 people you are bound to find either a group of 3 distinct mutual friends or 3 distinct mutual enemies (obviously this assumes for any given pair of people they are either mutual friends or mutual enemies). 
+
+Proof
+
+Consider one person. Call them Sally. Divide the rest of the people into 2 buckets - either they are friends of Sally's or enemies of Sally. Since we have 2 buckets and 5 people it must be the case that one of the buckets contains at least 3 people. Without loss of generality, let us assume the friends bucket has at least 3 people (if it has more than 3 it is even better for our proof).
+
+Then let us draw the 'friendship' graph. It is going to look like this, with the red vertex being Sally.
+
+\includegraphics[scale=0.5]{friends.png}
+
+Now consider what happens if we add any edge to this graph. That would immediately create a triangle (a $K_3$) which means that we have 3 distinct mutual friends and we are done with proving the result.
+
+Consider what happens if we do not add any edge to this graph. That would mean that none of Sally's friends are friends with each other. That immediately means that we have 3 enemies. 
+
+So currently we have shown that if any person has 3 friends then the theorem is true. 
+
+The remainder of the proof is simple because we only have to worry about  
+
+a) what happens if an arbitrarily chosen person has more than 3 friends - this is easy because if that person has more than 3 friends we can pick any 3 of them and prove the result using the above argument.
+
+b) what happens if the arbitrarily chosen person does not have at least 3 friends - this must mean that the chosen person has at least 3 enemies. That results in a similar argument to before with the words friend and enemy being interchanged.
+
 \end{document}
 
 
