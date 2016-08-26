@@ -58,7 +58,7 @@ A set does not have to make any logical sense. As far as mathematics is concerne
 
 If $S$ is a set and $x$ is something in the set, we say $x \in S$.
 
-So far, the notation we have introduced is called set-roster notation where we are listing out elements of the set. If you know each and every element of your set, this is a convenient notation i.e. just list them out between two braces.Often, sets are large and we do not want to explicitly spend time writing each element. $\{1,2,3,\ldots,42\}$ is valid notation and is understood to mean all the integers from 1 to 42.
+So far, the notation we have introduced is called set-roster notation where we are listing out elements of the set. If you know each and every element of your set, this is a convenient notation i.e. just list them out between two braces. Often, sets are large and we do not want to spend time writing each element. $\{1,2,3,\ldots,42\}$ is valid notation and is understood to mean all the integers from 1 to 42.
 
 \emph{Remember that $\{0\}$ is different from the number $0$. One of them is a set containing the single element 0, the other is just the number 0. }
 
@@ -81,14 +81,17 @@ The {\bf empty set}(the set containing nothing) is denoted by the greek letter $
 Certain sets are used so often that they have special notation.
 
 \begin{itemize}
-\item $\mathbb{R}$ - real numbers (basically any number we touch in this course). 
-
-\item $\mathbb{Q}$ - rational numbers. These are numbers of the form $\frac{p}{q}$ where $q \neq 0 $. Remember that numbers with a decimal point can be expressed in this form as long as they either have a terminating decimal like 
-$2.56$ or they have a recurring decimal like $0.3333333$.
-
-\item $\mathbb{Z}$ - integers. These are the positive and negative numbers that you are familiar with. 
 
 \item $\mathbb{N}$ - natural numbers. All positive integers. Importantly we will not include 0 in this set. 
+
+\item $\mathbb{Z}$ - integers. These are 0, positive negative whole numbers that you are familiar with. 
+
+\item $\mathbb{R}$ - real numbers (basically any number we touch in this course). 
+
+\item $\mathbb{Q}$ - rational numbers. These are numbers of the form $\frac{p}{q}$ where $q \neq 0 $ and $p \in \mathbb{Z}$, $q \in \mathbb{Z}$. Remember that numbers with a decimal point can be expressed in this form as long as they either have a terminating decimal like 
+$2.56$ or they have a recurring decimal like $0.3333333$.
+
+Examples of real numbers that are not rational numbers include $\sqrt{2}, \pi, e$
 
 \end{itemize}
 
@@ -106,7 +109,7 @@ It is equivalent to the set $\{-1, 0, 1, 2, 3, 4\}$.
 
 \medskip
 
-The syntax is to first introduce the `main' set (generally called the universe), then put down a $|$ and then some kind of conditional statement (you have by now seen if statements in 591). 
+The syntax is to first introduce the `main' set (generally called the universe), then put down a $|$ and then some kind of conditional. 
 
 \section*{Subset}
 If $A$ and $B$ are sets, then $A$ is called a subset of $B$, $A \subseteq B$  if and only if, every element in $A$ is also an element in $B$.
@@ -119,7 +122,7 @@ The (true) statement `Every rational number is a real number' gets mathematicall
 
 \subsection*{Element of and subset of}
 
-A very common confusion is that between the $\in$ and $\subseteq$. Here is an attempt at clarifying that via an example (the zybook has one too).
+A very common confusion is that between the $\in$ and $\subseteq$. Here is an attempt at clarifying that via an example (the zybook has some too).
 
 \medskip
 
@@ -293,8 +296,10 @@ Tell me what I ate for lunch but did not eat for dinner. Set difference!
 
 \begin{verbatim}
 SELECT item FROM Lunch
+WHERE consumer = 'Arvind'
 EXCEPT
 SELECT item FROM Dinner
+WHERE consumer = 'Arvind'
 \end{verbatim}
 
 \end{document}
