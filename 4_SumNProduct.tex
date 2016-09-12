@@ -173,11 +173,19 @@ it begins with a W - $25 \cdot 24 \cdot 23$ possibilities
 So a total of $2 \cdot 25 \cdot 24 \cdot 23$ possibilities.
 
 \paragraph{Example}
-Consider a wedding picture of 6 people, there are 10 people in total including the bride and groom. How many possibilities are there if the bride must be in the picture? Remember that pictures are considered different if different people are placed in different locations.
 
-The bride can be picked first and put into any of 6 positions.
+A wedding photographer wants to take a  bunch of pictures of Ann and Bob's wedding. There are 10 people in total (including Ann and Bob). How many possibilities are there if Ann must be in the picture? Remember that pictures are considered different if different people are placed in different locations.
 
-Then for the other 5 positions to be filled, the first of them will have 9 possibilities (all except the bride), the next one 8 and so on.
+\medskip
+
+One way of doing this is to split it up into 6 possibilities
+
+Ann is the first position, Ann is in the second position, and so on. These are mutually exclusive.
+
+When Ann is in the first position the second position can be filled with 9 possibilities, the third with 8 possibilities etc. So with Ann in the first position we have 
+$9 \times 8 \times 7 \times 6 \times 5$.
+
+For all the other possibilities for Ann, the number remains the same. There are 6 possible places Ann could be. 
 
 Therefore the total number of photographs are $6 \times 9 \times 8 \times 7 \times 6 \times 5$
 
@@ -188,7 +196,9 @@ Remember that a bijection means one to one and onto.
 
 This principle is surprisingly useful at times when it is tough to count the elements of a set directly, but the elements of the set can be mapped to an easier set. 
 
-Example - 30 teams qualify for a new form of the World Cup where every single game is a knockout. If you lose, you are out. How many games need to be played before we declare a winner?
+\textbf{Example} - 
+
+30 teams qualify for a new form of the World Cup where every single game is a knockout. If you lose, you are out. How many games need to be played before we declare a winner?
 
 The initial and obvious approach would be to start constructing a format of the World Cup where in the first stage, you have 15 matches and then drawing out a full bracket (or tree if you prefer). The problem is once the first stage is done, we have 15 winners. How exactly do we play them. Does it matter which order the knockouts are held in?
 
