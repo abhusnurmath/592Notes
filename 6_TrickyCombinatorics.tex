@@ -43,7 +43,6 @@ Main concepts
 \begin{itemize}
 \item Arrangements when some objects are alike
 \item Counting integer solutions
-\item Binomial Theorem
 \end{itemize}
 \vspace{0.5cm}\noindent
 
@@ -143,65 +142,6 @@ The boys choose the gaps in $\binom{6}{3}$ and then can be rearranged in 3! ways
 
 Putting it all together we get $5! \cdot 6\cdot 5\cdot 4$.  
 
-\section*{Binomial Theorem}
-One of the more fundamental identities in algebra that involves combinatorics is the expansion of the algebraic expression $(x+y)^n$.
-
-\begin{align*}
-(x+y)^n = \sum_{k=0}^n {n \choose k} x^{n-k}y^k
-\end{align*}
-
-One (hopefully easy) way to remember this result is to think of the expansion to be consisting of a number of algebraic terms. The total exponent in each term is supposed to be $n$. To begin with, we use only $x$s and get $x^n$. The next term we have $n-1$ $x$s and want to include one single $y$. That $y$ can be used in any of ${n \choose 1}$ places. Hence the term is ${n \choose 1} x^{n-1}y^1$.
-
-Similar logic can be used for the case when you want to allow 2$y$s in the expression and you still have to maintain a grand total of $n$ items being multiplied. Those two $y$s can be in any of ${n \choose 2}$ places.
-
-\subsection*{Applications of the Binomial Theorem}
-
-The Binomial Theorem gives rise to the following important identity
-
-\begin{align*}
-2^n = \binom{n}{0} + \binom{n}{1} + \binom{n}{2} + \ldots + \binom{n}{n}
-\end{align*}
-
-which is obtained by just setting $x$ and $y$ to be equal to 1 in the binomial expansion of $(x+y)^n$.
-
-This also leads to the concept of a combinatorial proof as well.
-
-On the left side of the identity we have $2^n$ which is the number of subsets of an $n$ element set. On the right side we have the number of 0 element subsets being added to the number of 1 element subsets being added to the number of 2 elemen subsets and so on.
-
-Every subset is either a 0 element subset or a 1 element subset or a 2 element subset .. or an $n$ element subset. Therefore the 2 sides of the equation are equal.
-
-\subsection*{Pascal's Triangle identity}
-
-You have probably seen the following pattern that is called Pascal's triangle where each row can be formed by adding appropriate terms of the previous row.
-
-\includegraphics[scale=0.6]{pascal.png}
-
-Now recognize that $2 = {2 \choose 1}$,  $3 = {3 \choose 1}$, $3 = {3 \choose 2}$. So the same pattern can actually be written as
-
-
-\includegraphics[scale=0.6]{pascalCombi.png}
-
-That shows us the following identity 
-
-\begin{align*}
-\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
-\end{align*}
-
-As with most of these identities it is possible to provide a combinatorial proof.
-
-The LHS(left hand side) is the number of ways of picking $k$ objects from a set of $n$ objects.
-
-Let's say that the $k$th object is kept aside. Then to pick $k$ objects we can either pick all $k$ from the remaining $n-1$ or we can pick $k-1$ objects from the remaining $n-1$ and then supplement it with this object that we have kept aside. Those two choices are exactly what we have being added in the right side of the equation. 
-
-The LHS and RHS are both counting the same thing and therefore must be equal.
-
-In general, a combinatorial proof requires the following steps
-
-\begin{itemize}
-\item Make up a question whose answer is the left side of the equation.
-\item Tell the reader why the right side of the equation is also counting the exact same thing but in a different manner.
-\item End the proof by just saying that since both methods are counting the same quantity they must be equal.
-\end{itemize}
 
 \end{document}
 
