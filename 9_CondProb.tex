@@ -87,43 +87,43 @@ P(F|E) &= P(F)
 As a really small example (more in next lecture) consider the event of rolling two dice of different color (red and yellow). We want to show the event "total number of dots on top is odd" is independent of the event "the red die has an odd number of dots on top".
 
 
-\subsection*{2 interesting conditional prob questions}
+\subsection*{Truel}
 
-\begin{enumerate}
-\item Your neighbour has 2 children. You learn that he has a son, Joe. What is the probability that Joe's sibling is a
-brother?
+%\begin{enumerate}
+%\item Your neighbour has 2 children. You learn that he has a son, Joe. What is the probability that Joe's sibling is a
+%brother?
+%
+%Consider the sample space in this question. You know there are 2 children so the possibilities are $\{BB,GG,BG,GB\}$. The reason we want to include both $GB$ and $BG$ is because one represents that the first born is a boy and the other represents the first boy is a girl.
+%
+%The event $E$ that the neighbour has a son Joe is the set $E = \{BB,BG,GB\}$.
+%
+%The event $F$ that the neighbour has two sons, which is the same thing as saying that Joe has a brother is just the set $F = \{BB\}$
+%
+%$P(F|E) = \frac{P(F \cap E)}{P(E)} = \frac{1/4}{3/4} = \frac{1}{3}$
+%
+%
+%\item Your neighbour has 2 children. He picks one of them at random and decides to visit your house. The kid he brings is his son named Joe. What is the probability that Joe's sibling is a brother?
+%
+%The sample space does not change but what has changed is the way in which the gathering of information has occurred. The father has done a random sampling before you find out information.
+%What changes? 
+%
+%Let the event $E'$ be your neighbour randomly chose a child and that happened to Joe. Event $E'$ does imply the event $E$ that we stated before. If the father randomly picks Joe then you do get the information that your neighbour has a son. However the other way round does not work. If you know that he has a son Joe, that does guarantee that he random picks Joe to bring over to your house.
+%
+%\begin{multline*}
+%P(E') = P(E'|\{BB\}) P(\{BB\}) + P(E'|\{BG\}) P(\{BG\}) + P(E'|\{GB\})  P(\{GB\}) \\
+%+ P(E'|\{GG\})P (\{GG\})
+%\end{multline*}
+%
+%The last term is 0 so can be eliminated right away. For the others, if there is a girl and a boy there is a 0.5 chance of bringing the boy over.
+%
+%$P(E') = 1 * \frac{1}{4} + 0.5 * \frac{1}{4} + 0.5 * \frac{1}{4}$
+%
+%Therefore the conditional probability
+%
+%$P(F|E') = \frac{P(F \cap E')}{P(E')} = \frac{P\{BB\}}{P(E')} = \frac{1/4}{1/2} = \frac{1}{2}$
 
-Consider the sample space in this question. You know there are 2 children so the possibilities are $\{BB,GG,BG,GB\}$. The reason we want to include both $GB$ and $BG$ is because one represents that the first born is a boy and the other represents the first boy is a girl.
 
-The event $E$ that the neighbour has a son Joe is the set $E = \{BB,BG,GB\}$.
-
-The event $F$ that the neighbour has two sons, which is the same thing as saying that Joe has a brother is just the set $F = \{BB\}$
-
-$P(F|E) = \frac{P(F \cap E)}{P(E)} = \frac{1/4}{3/4} = \frac{1}{3}$
-
-
-\item Your neighbour has 2 children. He picks one of them at random and decides to visit your house. The kid he brings is his son named Joe. What is the probability that Joe's sibling is a brother?
-
-The sample space does not change but what has changed is the way in which the gathering of information has occurred. The father has done a random sampling before you find out information.
-What changes? 
-
-Let the event $E'$ be your neighbour randomly chose a child and that happened to Joe. Event $E'$ does imply the event $E$ that we stated before. If the father randomly picks Joe then you do get the information that your neighbour has a son. However the other way round does not work. If you know that he has a son Joe, that does guarantee that he random picks Joe to bring over to your house.
-
-\begin{multline*}
-P(E') = P(E'|\{BB\}) P(\{BB\}) + P(E'|\{BG\}) P(\{BG\}) + P(E'|\{GB\})  P(\{GB\}) \\
-+ P(E'|\{GG\})P (\{GG\})
-\end{multline*}
-
-The last term is 0 so can be eliminated right away. For the others, if there is a girl and a boy there is a 0.5 chance of bringing the boy over.
-
-$P(E') = 1 * \frac{1}{4} + 0.5 * \frac{1}{4} + 0.5 * \frac{1}{4}$
-
-Therefore the conditional probability
-
-$P(F|E') = \frac{P(F \cap E')}{P(E')} = \frac{P\{BB\}}{P(E')} = \frac{1/4}{1/2} = \frac{1}{2}$
-
-
-\end{enumerate}
+%\end{enumerate}
 
 \section*{Bayes Theorem}
 
