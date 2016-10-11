@@ -43,22 +43,29 @@ The random variable is basically some number that we want to associate with outc
 
 If X is a random variable defined on the sample space S of an experiment and r is a real number, then X = r is an event. The event X = r consists of all outcomes s in the sample space such that X(s) = r. p(X = r) is the sum of p(s) for all s such that X(s) = r. 
 
-Expressed in more verbose language, the probability that the random variable X takes on the value r, is the sum of the probabilities for all outcomes s for which the value of the random variable in r. 
+Expressed in more verbose language, the probability that the random variable X takes on the value r, is the sum of the probabilities for all outcomes s for which the value of the random variable is r. 
 
-Distribution of a random variable
+\underline{Distribution of a random variable}
 
 The distribution of a random variable is the set of all pairs (r, p(X = r)) such that $r \in X(S)$.
 
 A histogram (a visualization that most of you have seen), is nothing more than a plot of these points. 
 
 \section*{Expectation}
-The expected value of a random variable is what we in common language just refer to as the average. Formally in math, if you have a random variable $X$, the expected value of the random variable is
+The expected value of a random variable is what in layperson's terms we just refer to as the average value of the random variable. Formally in math, if you have a random variable $X$, the expected value of the random variable is
 
 \begin{align*}
 E[X] = \sum_{s \in S}X(s)p(s)
 \end{align*}
 
-where p(s) is the probability of an outcome.
+The sum is being taken over every outcome in the sample space. 
+
+\begin{verbatim}
+sum = 0
+for every point in the sample space {
+     sum += value of the random variable for that outcome * probability of that outcome
+}
+\end{verbatim}
 
 \textbf{Example - Lottery (taken from Zybook)}
 
@@ -153,7 +160,11 @@ This example shows that while expectation can be calculated using the direct for
 
 Indicator random variables are random variables that take the value 1 if the event happens and 0 if the event does not happen. While seemingly trivial, these random variables have a nice property that makes them invaluable in expectation calculations. $E(X_i) = P(X_i=1) = $ probability of the event happening. 
 
-Recall the derangements (hat check problem) that involved people going into a bar, getting drunk and then not getting their hats back. We had previously computed the probability of no one getting their hats back. Now let us compute the expected number of people who get their hats back?
+\medskip
+
+\textbf{Derangements problem}
+
+A bunch of people go to a bar. Each one of them has to check their hats in. When they leave the bar they ask for their hats back. However, they are too drunk to be careful about picking up the correct hat. Compute the expected number of people who get their (own) hats back?
 
 Let $X_i$ be the indicator random variable for the $i$th person getting their hat back. So $X_i$ is 1 if person $i$ gets their hat back and 0 otherwise. Given this setup, the total number of people who get their hats back will be $X_1 + X_2 + \ldots X_n$.
 
