@@ -99,8 +99,6 @@ Therefore, $3!3!3!2! = 432$ pictures.
 
 \textbf{Example}
 
-This one is taken from the recitation questions since we did not get to it in recitation
-
 In how many ways can the letters of the word `LEADING' be arranged so that the vowels are always together.
 
 In a manner similar to the example above, we tie the vowels together. That means we have the characters L, D, N, G and then the block of A,E,I. So 5 different things to be arranged first. 
@@ -114,7 +112,7 @@ So overall, you have 5!3! ways or arranging these letters as per the constraints
 
 Assume someone tells you that Christopher Nolan is a great director. You want to watch some of his movies but you really do not have the time to watch them all. You just want to watch 3 of them before you make your decision whether he is good or not. The question is in how many ways can you make your choice.
 
-Here are his movies - {Following, Memento, Insomnia, Batman Begins, The Prestige, The Dark Knight, Inception, The Dark Knight Rises}. 8 movies in total.
+Here are his movies - {Following, Memento, Insomnia, Batman Begins, The Prestige, The Dark Knight, Inception, The Dark Knight Rises, Interstellar}. 9 movies in total.
 
 Now let's first look at this as a sequencing/permutation question and say we have 3 blanks to fill 
 
@@ -122,7 +120,7 @@ Now let's first look at this as a sequencing/permutation question and say we hav
 
 \vspace{1cm}
 
-The first blank can be filled in 8 ways, the second in 7 ways, the third in 6 ways (you're not going to repeat a movie). So your initial idea might be to say $8 \cdot 7 \cdot 6$.
+The first blank can be filled in 9 ways, the second in 8 ways, the third in 7 ways (you're not going to repeat a movie). So your initial idea might be to say $9 \cdot 8 \cdot 7$.
 
 But the order does not matter! You are just making a choice of 3 movies to watch. It does not matter if you watch Memento, Insomnia, Dark Knight in that order or Insomnia, Dark Knight, Memento in that order. If someone was to ask you which 3 movies you watched, in both cases, you would just say `I watched Insomnia, Memento and Dark Knight'.
 
@@ -140,8 +138,8 @@ That is 6 ways.
 So for each choice, we have 6 ways to do the arrangements. That means that
 
 \begin{align*}
-\text{Number of choices} \times 6 &= 8 \cdot 7 \cdot 6 \\
-\text{Number of choices} &= \frac{8 \cdot 7 \cdot 6 }{6}
+\text{Number of choices} \times 6 &= 9 \cdot 8 \cdot 7 \\
+\text{Number of choices} &= \frac{9 \cdot 8 \cdot 7 }{6}
 \end{align*}
 
 This is basically what is called a combination problem or a problem that involves counting the number of choices.
@@ -154,7 +152,7 @@ There is a formula and terminology associated with this. We write ${n \choose r}
 
 Now that you have seen this notation and formula, you can answer the previous question even more directly by saying
 
-The number of choices is the same as picking a set of 3 from a set of 8. That is $\binom{8}{3}$.
+The number of choices is the same as picking a set of 3 from a set of 9. That is $\binom{9}{3}$.
 
 \section*{The k to 1 rule}
 Let $f: X \rightarrow Y$ be a function with the property that for every $y \in Y$, there are exactly $k$ different $x \in X$ such that $f(x) = y$
@@ -187,7 +185,7 @@ How many 4 element subsets are there? Again, that is $\binom{16}{4}$.
 
 \section*{More examples to distinguish between permutation and combinations}
 
-Do the zybook participation activity 4.6.2 (to be done in class).
+Do the zybook participation activity 4.6.2 (hopefully to be done in class).
 
 
 \end{document}
