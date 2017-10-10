@@ -89,6 +89,11 @@ As a really small example (more in next lecture) consider the event of rolling t
 
 \subsection*{Truel}
 
+For discussion on the Truel see 
+
+
+http://www.mathgoespop.com/2009/10/martin-gardner-and-the-three-way-duel.html
+
 %\begin{enumerate}
 %\item Your neighbour has 2 children. You learn that he has a son, Joe. What is the probability that Joe's sibling is a
 %brother?
@@ -183,9 +188,9 @@ What is the probability that a randomly chosen person who tests positive actuall
 
 We first need to clearly understand what false positive and false negative mean. Both these terms are used in detection systems and it is terminology that is commonly used for classifiers in machine learning as well.
 
-False positive - the test says the person has the disease when the person actually does not have it.
+False positive - the test says the person has the disease when the person actually does not have it. The word `when' is the same as the word `given'.
 
-False negative - the test says the person does not have the disease when the person actually does have it.
+False negative - the test says the person does not have the disease when the person actually does have it. The word `when' is the same as the word `given'.
 
 Now to solve this question, let us define some events
 
@@ -195,7 +200,7 @@ Now to solve this question, let us define some events
 \item $B_2$ be the event that a randomly chosen person does not have the disease.
 \end{itemize}
 
-Now the question is asking $P(A|B_1)$.
+Now the question is asking $P(B_1|A)$.
 
 \begin{align*}
 P(B_1|A) = \frac{P(A|B_1)P(B_1)}{P(A|B_1)P(B_1) + P(A|B_2)P(B_2)}
