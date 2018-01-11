@@ -30,18 +30,17 @@
 %
 \begin{document}
 \begin{center}
-\fbox{{\Large\bf Recursion}}\\
+\fbox{{\Large\bf Recursion and Big-O}}\\
 \vspace{1cm}
 \end{center}
 
 \vspace{0.5cm}\noindent
 
-All code in this section will be in Python since that was the language of instruction in CIT591 (or 590). Even if you do not know Python, the syntax is easy enough to understand. You will not be asked to code in exams. A choice of language is just needed so that it is completely unambiguous as to what my program is doing.
 
 \section*{Recursion}
 The idea behind recursion is the same as that being used in proofs by induction. Can we show the fact that if a problem is solved (if a theorem is true) for smaller instances (for n-1, n-2 etc) then the problem is solvable (then the theorem is true) for the current instance (for n).
 
-The canonical example used to introduce recursion in most CS classes is factorial. Factorial has this nice property that $factorial(n) = n \times factorial(n-1)$. So when you write the function recursively there is level of trust that goes on that should not make you really question something along the lines of 'why should I believe factorial(n-1) will get computed correctly'. The correct way of thinking is to say let me assume factorial(n-1) is computed correctly. Can I do something with that?
+The canonical example used to introduce recursion in most CS classes is factorial. Factorial has this nice property that $factorial(n) = n \times factorial(n-1)$. So when you write the function recursively there is this level of trust that goes on that should not make you really question something along the lines of 'why should I believe factorial(n-1) will get computed correctly'. The correct way of thinking is to say let me assume factorial(n-1) is computed correctly. Can I do something with that?
 
 \subsection*{Proving a program works!}
 
@@ -98,7 +97,7 @@ if and only if there is a positive constant $C$ such that for all sufficiently l
 |f(x)| \le \; C |g(x)|\text{ for all }x \ge n_0.
 \end{align*}
 
-While the formal definition is needed for the math's sake, most CS people think of it in terms of this graph
+While the formal definition is needed for math, most CS people think of it in terms of this graph
 
 \includegraphics[scale=0.5]{bigO.png}
 
@@ -124,12 +123,6 @@ The constants do matter, but first it is important to make an efficient algorith
 Therefore, remember that you are allowed to do some sloppy math when you are analyzing algorithms. The key is to begin the sloppiness only after you have written a correct expression down and done some level of evaluation.
 
 
-\section*{Mergesort and selection sort}
-
-The code will be posted online. In CIT596 we will talk about more sorting algorithms. This is just to give you a taste for what big-O is.
-
-Also see https://www.youtube.com/watch?v=XaqR3G\_NVoo
-
 \section*{Recurrences}
 
 A recurrence relation in the most basic sense is an equation which is trying to define a sequence recursively.
@@ -151,7 +144,7 @@ a & \mbox{if } n = 0
 
 is given by
 
-$T(n) = r^n a + \sum_{i=1}^n r^{n-i} g(i)$
+$T(n) = r^n a + \displaystyle\sum_{i=1}^n r^{n-i} g(i)$
 
 \end{theorem}
 
@@ -187,10 +180,11 @@ This theorem can readily be applied for a whole number of `real world' problems.
 For instance, here is a recursive way of finding the maximum element in an array
 
 \begin{verbatim}
-def maximo(arr):
-    if len(arr) == 1:
-        return arr[0]
-    return max(arr[0], maximo(arr[1:]))
+maximum(array) {
+    if length(array) is 0 return n/a
+    if length(array) is 1 return array[1]
+    return max(firstelem,maximum(rest))
+}
 \end{verbatim}
 
 How long does this function take? What is the running time of this algorithm? 
@@ -207,7 +201,7 @@ and it is very easy to use the above theorem to see that the closed form solutio
 
 \medskip
 
-The Towers of Hanoi recursion worked out to $Moves(n) = 2Moves(n-1) + 1$. Also in this case we have $Moves(0) = 0$.
+The Towers of Hanoi recursion works out to be $Moves(n) = 2Moves(n-1) + 1$. Also in this case we have $Moves(0) = 0$.
 
 By direct application of the theorem we have the result that
 
@@ -217,29 +211,28 @@ Moves(n) &= 2^n \cdot 0+ \sum_{i=1}^n 2^{n-i} \cdot 1 \\
 &= 2^{n} - 1
 \end{align*}
 
-\subsection*{Mergesort recurrence}
+\subsection*{Binary search recurrence}
 
 For mergesort we can write the recurrence as the following
 
 \begin{align*}
-T(n) = 2T(n/2) + T_{merge}
+T(n) = T(n/2) + T_{check}
 \end{align*}
 
-Also as a base case, assume that sorting an array of size 1 takes some constant time $a$. $T(1) = a$.
+Also as a base case, assume that for an array of size 1, it takes constant time $a$. $T(1) = a$.
 
-since we are dividing the problem into roughly equal halves and then doing the merging. Merging involves going through the arrays in a loop but each of the arrays that are being merged is just looped over once. So we conclude that merging is a linear time operation. And we can write $T_{merge}$ as some $kn$ for a positive integer constant $k$.
+$T_{check}$ is the time taken to see whether the middle element is equal to the element that we are seeking. That should take the same amount of time as the base case. 
 
 \begin{align*}
-T(n) &= 2T(n/2) + kn \\
-&= 4T(n/4) + kn + kn \\
-&= 8T(n/8) + kn + kn + kn \\
-&= 2^i T(n/2^i) + ikn\\
-&= an + kn \log_2 n 
+T(n) &= T(n/2) + a \\
+&= T(n/4) + a + a \\
+&= T(n/8) + a + a + a \\
+&= T(n/2^i) + ia\\
+&= a + a \log_2 n 
 \end{align*}
 
-$n \log_2 n$ is a term that dominates over $n$ (beyond a certain value of n).
 
-which means that mergesort is O(n log n).
+which means that binary search is O( log n).
 
 \end{document}
 
