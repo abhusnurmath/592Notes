@@ -148,38 +148,37 @@ where $F^c$ is just the event of $F$ not happening.
 
 \textbf{Example - Taken from UWash notes}
 
-In Orange County, 51\% of the adults are males. One adult is randomly selected
+In Orange County, 51\% of the adult population is above the age of 35. One adult  is randomly selected
 for a survey involving credit card usage.
 \begin{enumerate}
-\item Find the prior probability that the selected person is a male.
+\item Find the prior probability that the selected person is above 35.
 \item It is later learned that the selected survey subject was smoking a cigar. Also, 9.5\%
-of males smoke cigars, whereas 1.7\% of females smoke cigars (based on data
-from the Substance Abuse and Mental Health Services Administration). Use this
-additional information to find the probability that the selected subject is a male.
+of adults above 35 smoke cigars, whereas only 1.7\% of adults 35 and below smoke cigars . Use this
+additional information to find the probability that the selected subject is above 35.
 \end{enumerate}
 
 Let us use some notation to simplify the analysis
 
-$M$ = male . Thereby $M^c$ = female. 
+$T$ = above 35 . Thereby $T^c$ = 35 and below. 
 
 $S$ = cigar smoker. And of course this means $S^c$ = not a cigar smoker.
 
-$P(M) = 0.51$
+$P(T) = 0.51$
 
-The second part is basically asking us to compute $P(M|S)$.
+The second part is basically asking us to compute $P(T|S)$.
 
 \begin{align*}
-P(M|S) = \frac{P(M) P(S|M)}{P(S|M^c) P(M^c) + P(S|M) P(M)}
+P(T|S) = \frac{P(T P(S|T)}{P(S|T^c) P(T^c) + P(S|T) P(T)}
 \end{align*}
 
-We are given $P(S|M)$ since 9.5\% males smoke. Similarly $P(S|M^c)$ has been provided since 1.7\% females smoke.
+We are given $P(S|T)$ since 9.5\% over 35 smoke. Similarly $P(S|T^c)$ has been provided as 1.7\%  .
 
 \begin{align*}
-P(M|S) = \frac{0.51 * 0.095}{0.51 * 0.095 + 0.49 * 0.017}
+P(T|S) = \frac{0.51 * 0.095}{0.51 * 0.095 + 0.49 * 0.017}
 = 0.853
 \end{align*}
 
-So there is an 85.3\% chance that it is a male if you observe cigars! Stands to reason. Men smoking is a far more likely event than women smoking (based on the data). 
+So there is an 85.3\% chance that it is an older person if you observe cigars! 
 
 \section*{Bayes Theorem and medical tests}
 Bayes theorem is used to evaluate probabilities for medical tests. Here is a questions as an example
