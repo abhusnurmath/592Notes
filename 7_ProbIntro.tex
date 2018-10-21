@@ -47,7 +47,7 @@ Examples are
 
 \begin{itemize}
 \item Consider a simple example of an experiment in which a red and a blue die are thrown. We will denote a single outcome by an ordered pair where the first number denotes the outcome on the blue one and second number denotes the outcome on the red one.
-Then the sample space is $S = \{(x,y)| 1 \le x \le 6, 1 \le y \le 6\}$.
+Then the sample space is $S = \{(x,y)| 1 \le x \le 6, 1 \le y \le 6\, ,x \in \mathbb{Z}, y \in \mathbb{Z}\}$.
 Any subset of the sample space is called an event. So for instance the event $E$ or having doubles show up on the dice can be written explicitly as
 
 $E = \{(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)\}$.
@@ -110,8 +110,13 @@ p(E) = \frac{|E|}{|S|}
 
 \pagebreak
 
-Example (from zybook - 6.1.2)
+\section*{Poker probabilities}
 
+A great review of both probability and permutations and combinations can be achieved via this wikipedia entry that has the probabilities of various poker hands
+
+\href{https://en.wikipedia.org/wiki/Poker\_probability}{https://en.wikipedia.org/wiki/Poker\_probability}
+
+\section*{A zybook example}
 Consider a situation in which files are stored on a distributed network. Multiple copies of each files are stored around the network so that if one or more computers crash, the data is more likely to be available from at least one source. Suppose that three copies of a files are stored at different locations in a network of 30 computers and that at a particular moment, five random computers fail. Each subset of 5 computers are equally likely to be the five that have failed. What is the probability that there are no copies left of the file?
 
 The experiment over here is choosing 5 computers that fail. So total number of distinct outcomes is ${30 \choose 5}$. Every computer is equally likely to fail. That means every subset of 5 is equally likely to fail. 
