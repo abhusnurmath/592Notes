@@ -77,36 +77,18 @@ This example might seem like an exaggeration of English ambiguities, but it is i
 \item $\vee$
 \end{enumerate}
 
-\section*{Simplifying Boolean Expressions and Truth Tables}
+\section*{Truth Tables}
 
-Truth tables are definitely things that we assume you have seen by this point. Either as a past course or in CIT593 (Note: will be covered in class if someone says they have not seen them at all).
+Truth tables are definitely things that we assume you have seen by this point. Either as a past course or in CIT593 (Note: will be covered in class if someone says they have not seen them at all). If you do not know what a truth table is, please set up a 10-15 min meeting with a TA or the instructor. They are not hard!
 
-For the simplification of Boolean expressions, perhaps the only thing that you need to get used to is that the mathematical symbols look slightly different from what you might have seen in other areas, especially if you have done logic as part of a circuit design course.
 
-Convention: We are using the value 1 to represent true.
+\section*{De-Morgan}
+For the simplification of Boolean expressions, the only rule that we need you to know is De-Morgan's law for booleans
 
-\medskip
-
-\textbf{Example}
-$(p \vee r) \wedge (p \wedge s \vee p \wedge \neg s) \vee (p \wedge r) \vee r$
-
-\begin{align*}
-&(p \vee r) \wedge (p \wedge s \vee p \wedge \neg s) \vee (p \wedge r) \vee r \\
-&= (p \vee r) \wedge (p \wedge ( s \vee \neg s)) \vee ( p \wedge r) \vee r \\
-&= (( p \vee r) \wedge p) \vee ( p \wedge r) \vee r \\
-&= p \wedge (( p \vee r)  \vee r) \vee r \\
-&= p \wedge (p \vee r) \vee r \\
-&= p \wedge (p \vee r) \vee r \\
-&= p \wedge p \vee p \wedge r \vee r \\
-&= p \vee p \wedge r \vee r \\
-&= p \vee p \wedge r \vee r \wedge 1 \\
-&= p \vee r \wedge ( p \vee 1) \\
-&= p \vee r
-\end{align*}
-
-The steps are deliberately not being written here. The assumption is that this sort of boolean simplification has been covered (maybe with different notation) in 593. In particular, if you replace the above with + and $\cdot$, which might be the convention used in that course, my hope is that you can do this.
-
-\textbf{If you have no clue what is going on with the above simplification let me know. But, thanks to 593 I am de-emphasizing this in 592.}
+\begin{itemize}
+\item $\neg(p \vee q) = \neg p \wedge \neg q$
+\item $\neg(p \wedge q) = \neg p \vee \neg q$
+\end{itemize}
 
 \section*{Conditional statements}
 
