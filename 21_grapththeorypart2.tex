@@ -44,7 +44,7 @@ Let $G = (V, E)$ and $G'=(V',E')$. $G$ and $G'$ are isomorphic if there is a bij
 
 Another way of saying this is that $G$ and $G'$ are isomorphic if there is bijection between the vertex sets that preserves adjacency.
 
-For an example, try an identify all pairs of isomorphic graphs in the following picture (example courtesy of the Malaysian high school math syllabus).
+For an example, try an identify all pairs of isomorphic graphs in the following picture
 
 
 \includegraphics[scale=0.6]{iso.jpg}
@@ -100,16 +100,49 @@ Trees are one of the fundamental structures in computer science. You will learn 
 Properties of trees
 
 We can show the following property
+ 
 
-There is exactly one path between each pair of distinct vertices in a tree.
+\textbf{Result}
 
-Proof - 
+Every tree with at least one edge has a leaf (vertex of degree 1).
 
-First we realize that we can say very easily that there must be at least one path between each pair of distinct vertices. Note that if we do not have that case then the graph is not connected. But being a tree it must be connected.
+\vspace*{0.1in}
 
-Now why can't we have more than 1 path. 
+Proof.
 
-Show how if you have more than 1 path, you can easily find a cycle in the graph. Easier to draw this than to explain it mathematically.
+We do this proof by providing a method to find a leaf.
+
+Consider any vertex of the tree.  Find the longest path out of that vertex. 
+
+Claim that this longest path will terminate in a vertex of degree 1. This claim can be proved based on the fact that trees are acyclic. Wherever the longest path ends, we cannot have an edge from that terminal vertex back to any of the other vertices in the path because that would create a cycle.
+
+Therefore it must be the case that the last vertex on this longest path will be a leaf.
+
+
+\textbf{Result}
+
+In any tree $e = v - 1$.
+
+Proof by induction on the number of vertices.
+
+Base case. 1 vertex and no edge. Easy.
+
+Assume it works for $k$ vertices. 
+
+Consider a $k+1$ vertex tree.
+
+It has a leaf because of the result above
+
+Remove leaf and the one edge coming out of it.
+
+We still have a connected acyclic graph (a tree).  So the induction hypothesis applies.
+
+\textit{Finish the rest of this...}
+
+
+\section*{Planar connected graphs}
+
+Show that v - e + f = 2
  
 
 \end{document}
