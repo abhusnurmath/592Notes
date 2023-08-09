@@ -28,19 +28,37 @@ jobs:
       - name: 📝 Find .tex Files and create Combined.tex
         run: |
           echo "\\documentclass{article}" > Combined.tex
+          echo "\\usepackage{setspace}" >> Combined.tex
+          echo "\\usepackage{geometry}" >> Combined.tex
+          echo "\\usepackage{float}" >> Combined.tex
+          echo "\\usepackage[utf8]{inputenc}" >> Combined.tex
+          echo "\\usepackage[english]{babel}" >> Combined.tex
           echo "\\usepackage{pdfpages}" >> Combined.tex
-          echo "\\usepackage{titlesec}" >> Combined.tex
+          echo "\\newcommand{\\HRule}[1]{\\rule{\\linewidth}{#1}}" >> Combined.tex
+          echo "\\setstretch{1.2}" >> Combined.tex
+          echo "\\geometry{" >> Combined.tex
+          echo "    textheight=9in," >> Combined.tex
+          echo "    textwidth=5.5in," >> Combined.tex
+          echo "    top=1in," >> Combined.tex
+          echo "    headheight=12pt," >> Combined.tex
+          echo "    headsep=25pt," >> Combined.tex
+          echo "    footskip=30pt" >> Combined.tex
+          echo "}" >> Combined.tex
           echo "\\begin{document}" >> Combined.tex
-
-          # Add the title page
-          echo "\\begin{titlepage}" >> Combined.tex
-          echo "\\centering" >> Combined.tex
-          echo "\\vspace*{\fill}" >> Combined.tex
-          echo "\\LARGE \textbf{<CourseName>}" >> Combined.tex
-          echo "\\Large <InstitutionName>" >> Combined.tex
-          echo "\\normalsize Author: <AuthorName>" >> Combined.tex
-          echo "\\vspace*{\fill}" >> Combined.tex
-          echo "\\end{titlepage}" >> Combined.tex
+          echo "\\thispagestyle{empty}" >> Combined.tex  # Remove page number from title page
+          echo "\\title{ \\normalsize \\textsc{}" >> Combined.tex
+          echo "		\\\\ [2.0cm]" >> Combined.tex
+          echo "		\\HRule{1.5pt} \\\\" >> Combined.tex
+          echo "		\\LARGE \\textbf{\\uppercase{CIT 5920}}" >> Combined.tex
+          echo "		\\HRule{2.0pt} \\\\ [0.6cm] \\LARGE{Discrete Math for Computer Science} \\vspace*{10\\baselineskip}" >> Combined.tex
+          echo "		}" >> Combined.tex
+          echo "\\date{}" >> Combined.tex
+          echo "\\author{\\textbf{Author} \\\\" >> Combined.tex
+          echo "		Arvind Bhusnurmath \\\\" >> Combined.tex
+          echo "		University of Pennsylvania \\\\" >> Combined.tex
+          echo "		Fall 2014}" >> Combined.tex
+          echo "\\maketitle" >> Combined.tex
+          echo "\\newpage" >> Combined.tex
 
           for file in $(ls *.tex | sort); do
             # Exclude Combined.tex from the list
