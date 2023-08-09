@@ -21,8 +21,16 @@ jobs:
           root_file: "*.tex"
           glob_root_file: true
           continue_on_error: true
+      
+      - name: 🏷️ Generate Release Tag
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::Build_$(date +"%Y.%m.%d_%H-%M")"
 
       - name: 📤 Upload Compiled PDF
         uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          tag_name: ${{ steps.tag.outputs.release_tag }}
           files: "*.pdf"
