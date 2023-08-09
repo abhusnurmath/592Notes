@@ -1,0 +1,28 @@
+name: 📄 Compile LaTeX Document
+
+on:
+  push:
+    branches:
+      - main # Set a branch to trigger the action
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔄 Check Out Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+
+      - name: 🛠️ Compile LaTeX Source
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: "*.tex"
+          glob_root_file: true
+          continue_on_error: true
+
+      - name: 📤 Upload Compiled PDF
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "*.pdf"
