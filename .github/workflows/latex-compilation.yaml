@@ -22,6 +22,47 @@ jobs:
           glob_root_file: true
           continue_on_error: true
       
+      - name: 📂 List Directory Contents
+        run: ls -al
+
+      - name: 📝 Find .tex Files and create Combined.tex
+        run: |
+          echo "\\documentclass{article}" > Combined.tex
+          echo "\\usepackage{pdfpages}" >> Combined.tex
+          echo "\\usepackage{titlesec}" >> Combined.tex
+          echo "\\begin{document}" >> Combined.tex
+
+          # Add the title page
+          echo "\\begin{titlepage}" >> Combined.tex
+          echo "\\centering" >> Combined.tex
+          echo "\\vspace*{\fill}" >> Combined.tex
+          echo "\\LARGE \textbf{<CourseName>}" >> Combined.tex
+          echo "\\Large <InstitutionName>" >> Combined.tex
+          echo "\\normalsize Author: <AuthorName>" >> Combined.tex
+          echo "\\vspace*{\fill}" >> Combined.tex
+          echo "\\end{titlepage}" >> Combined.tex
+
+          for file in $(ls *.tex | sort); do
+            # Exclude Combined.tex from the list
+            if [[ "$file" != "Combined.tex" ]]; then
+              # Replace .tex with .pdf
+              pdf_file="${file%.tex}.pdf"
+              echo "\\includepdf[pages=-]{$pdf_file}" >> Combined.tex
+            fi
+          done
+          echo "\\end{document}" >> Combined.tex
+          mv "Combined.tex" "CIT-5920-Lecture-Notes.tex"
+
+      - name: 🔍 Look at file content
+        run: cat "CIT-5920-Lecture-Notes.tex"
+
+      - name: 🛠️ Compile Combined.tex
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: "CIT-5920-Lecture-Notes.tex"
+          glob_root_file: true
+          continue_on_error: true
+      
       - name: 🏷️ Generate Release Tag
         id: tag
         run: |

@@ -1,4 +1,5 @@
-592Notes
-========
+# UPenn — CIT 5920 — Lecture Notes
 
-Collection of brief notes from fall 2014 592 lectures
+This repository contains lecture notes originally authored by Arvind Bhusnurmath for the Fall 2014 offering of CIT 5920 at the University of Pennsylvania.
+
+Any change made to the LaTeX source files will automatically be recompiled and pushed as a release.
